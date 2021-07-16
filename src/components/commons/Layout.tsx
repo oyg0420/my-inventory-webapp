@@ -33,7 +33,7 @@ export const StyledLayoutSection = styled.section`
   flex-direction: column;
 `;
 
-const LayoutBody: React.FC = ({ children }) => {
+export const LayoutBody: React.FC = ({ children }) => {
   return (
     <StyledLayoutMain>
       <StyledLayoutSection>{children}</StyledLayoutSection>
@@ -41,12 +41,10 @@ const LayoutBody: React.FC = ({ children }) => {
   );
 };
 
-const LayoutHaeder: React.FC = ({ children }) => {
+export const LayoutHaeder: React.FC = ({ children }) => {
   return <StyledLayoutHeader>{children}</StyledLayoutHeader>;
 };
 
-const Layout: React.FC = ({ children }) => {
+export const Layout: React.FC = ({ children }) => {
   return <LayoutContainer>{children}</LayoutContainer>;
 };
-
-export { Layout, LayoutHaeder, LayoutBody };

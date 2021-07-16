@@ -65,34 +65,32 @@ const TableContainer = styled.div`
   }
 `;
 
-const TableRow: React.FC = ({ children }) => {
+export const TableRow: React.FC = ({ children }) => {
   return <StyledTableRow>{children}</StyledTableRow>;
 };
 
-const TableColumn: React.FC = ({ children }) => {
+export const TableColumn: React.FC = ({ children }) => {
   return <StyledTableColumn>{children}</StyledTableColumn>;
 };
 
-const TableBody: React.FC = ({ children }) => {
+export const TableBody: React.FC = ({ children }) => {
   return <StyledTableBody>{children}</StyledTableBody>;
 };
 
 type TableHeaderColumnProps = { columnWidth: string };
 
-const TableHeaderColumn: React.FC<TableHeaderColumnProps> = ({ columnWidth, children }) => {
+export const TableHeaderColumn: React.FC<TableHeaderColumnProps> = ({ columnWidth, children }) => {
   return <StyledTableHeaderColumn columnWidth={columnWidth}>{children}</StyledTableHeaderColumn>;
 };
 
-const TableHeader: React.FC = ({ children }) => {
+export const TableHeader: React.FC = ({ children }) => {
   return <StyledTableHeader>{children}</StyledTableHeader>;
 };
 
-const Table: React.FC = ({ children }) => {
+export const Table: React.FC = ({ children }) => {
   return (
     <TableContainer>
       <StyledTable>{children}</StyledTable>
     </TableContainer>
   );
 };
-
-export { Table, TableHeader, TableHeaderColumn, TableBody, TableColumn, TableRow };

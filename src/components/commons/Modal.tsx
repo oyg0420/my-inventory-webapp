@@ -84,11 +84,11 @@ const HeaderHideButton = styled.button`
   }
 `;
 
-const ModalFooter: React.FC = ({ children }) => {
+export const ModalFooter: React.FC = ({ children }) => {
   return <StyledModalFooter>{children}</StyledModalFooter>;
 };
 
-const ModalBody: React.FC = ({ children }) => {
+export const ModalBody: React.FC = ({ children }) => {
   return <StyledModalBody>{children}</StyledModalBody>;
 };
 
@@ -96,7 +96,7 @@ type ModalHeaderProps = {
   onHideClick(): void;
 };
 
-const ModalHeader: React.FC<ModalHeaderProps> = ({ children, onHideClick }) => {
+export const ModalHeader: React.FC<ModalHeaderProps> = ({ children, onHideClick }) => {
   return (
     <StyledModalHeader>
       <HeaderTitle>{children}</HeaderTitle>
@@ -111,12 +111,10 @@ type Props = {
   onHideClick?(): void;
 };
 
-const Modal: React.FC<Props> = ({ children }) => {
+export const Modal: React.FC<Props> = ({ children }) => {
   return (
     <ModalContainer>
       <ModalContent>{children}</ModalContent>
     </ModalContainer>
   );
 };
-
-export { Modal, ModalHeader, ModalBody, ModalFooter };
