@@ -5,7 +5,7 @@ const StyledInput = styled.input`
   display: block;
   width: 100%;
   padding: 0.375rem 0.75rem;
-  font-size: 1rem;
+  font-size: 14px;
   line-height: 1.5;
   color: #495057;
   background-color: #fff;
@@ -30,16 +30,25 @@ const StyledInput = styled.input`
   }
 `;
 
+const isValidNumberFormat = (originalValue: string) => /^[0-9]\d*$/.test(originalValue);
+
 type Props = {
-  onValueChange(value: string): void;
+  onValueChange?(value: string): void;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-const Input: React.FC<Props> = ({ onValueChange, value, disabled, ...rest }) => {
+const Input: React.FC<Props> = ({ onValueChange, value, disabled, type, ...rest }) => {
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      onValueChange(e.target.value);
+      const nextValue = e.target.value;
+      if (type === 'number') {
+        if (!nextValue || isValidNumberFormat(nextValue)) {
+          onValueChange?.(nextValue.replace(/^0+\d/, ''));
+        }
+      } else {
+        onValueChange?.(nextValue);
+      }
     },
-    [onValueChange]
+    [onValueChange, type]
   );
 
   return <StyledInput value={value} onChange={handleChange} disabled={disabled} {...rest} />;

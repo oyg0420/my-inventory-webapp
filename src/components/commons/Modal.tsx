@@ -44,6 +44,7 @@ const StyledModalHeader = styled.div`
 `;
 
 const StyledModalBody = styled.div`
+  display: flex;
   position: relative;
   flex: 1 1 auto;
   padding: 20px;
