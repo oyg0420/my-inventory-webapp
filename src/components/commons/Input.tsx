@@ -51,7 +51,7 @@ const Input: React.FC<Props> = ({ onValueChange, value, disabled, type, ...rest 
     [onValueChange, type]
   );
 
-  return <StyledInput value={value} onChange={handleChange} disabled={disabled} {...rest} />;
+  return <StyledInput type={type} value={value} onChange={handleChange} disabled={disabled} {...rest} />;
 };
 
 export default Input;
