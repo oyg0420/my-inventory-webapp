@@ -1,16 +1,35 @@
 import styled from 'styled-components';
 import { ColorType } from '../styles';
+type SizeType = 'small' | 'medium' | 'large';
 
 type Props = {
   buttonType?: ColorType;
+  buttonSize?: SizeType;
 };
 
 const Button = styled.button<Props>`
   display: inline-block;
-  padding: 7px 20px;
   vertical-align: middle;
   font-weight: bold;
-  font-size: 14px;
+  ${props => {
+    switch (props.buttonSize) {
+      case 'large':
+        return `
+        padding: 16px 10px;
+        font-size: 20px;
+        `;
+      case 'small':
+        return `
+        padding: 8px 10px;
+        font-size: 14px;
+          `;
+      default:
+        return `
+        padding: 12px 10px;
+        font-size: 18px;
+        `;
+    }
+  }}
   text-align: center;
   white-space: nowrap;
   color: ${props => props.theme.button[props.buttonType || 'secondary'].color};

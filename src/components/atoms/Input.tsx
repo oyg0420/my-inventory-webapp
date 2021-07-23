@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const StyledInput = styled.input`
   display: block;
-  width: 100%;
   padding: 0.375rem 0.75rem;
   font-size: 14px;
   line-height: 1.5;
@@ -54,4 +53,4 @@ const Input: React.FC<Props> = ({ onValueChange, value, disabled, type, ...rest 
   return <StyledInput type={type} value={value} onChange={handleChange} disabled={disabled} {...rest} />;
 };
 
-export default Input;
+export default styled(Input)``;
