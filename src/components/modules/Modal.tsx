@@ -1,4 +1,4 @@
-import { ButtonGroup } from 'components/atoms/Button';
+import ButtonGroup from 'components/atoms/ButtonGroup';
 import React from 'react';
 import styled from 'styled-components';
 

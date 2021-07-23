@@ -1,6 +1,10 @@
-import Control from 'components/atoms/Control';
 import Label from 'components/atoms/Label';
 import styled from 'styled-components';
+
+const Control = styled.div`
+  display: flex;
+  flex: 80%;
+`;
 
 const FormControlsContainer = styled.div`
   display: flex;

@@ -1,7 +1,6 @@
 import Modal from 'components/modules/Modal';
 import React from 'react';
 import Button from 'components/atoms/Button';
-import DatePicker from 'components/atoms/DatePicker';
 import { useCallback } from 'react';
 import Input from '../atoms/Input';
 import FormController from 'components/modules/FormController';
@@ -102,7 +101,7 @@ const InventoryModal: React.FC<Props> = ({ onHideClick }) => {
           rules={{ required: true }}
           render={({ field: { onChange, value } }) => (
             <FormController label="등록일">
-              <DatePicker value={value} onDateChange={onChange} />
+              <Input type="date" value={value} onValueChange={onChange} />
             </FormController>
           )}
         />

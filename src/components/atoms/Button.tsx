@@ -36,12 +36,4 @@ const Button = styled.button<Props>`
   }
 `;
 
-export const ButtonGroup = styled.div`
-  display: flex;
-
-  ${Button} + ${Button} {
-    margin-left: 5px;
-  }
-`;
-
 export default Button;
