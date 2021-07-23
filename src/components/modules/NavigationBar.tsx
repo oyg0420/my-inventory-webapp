@@ -47,7 +47,7 @@ const NavigationBar: React.FC<Props> = ({ links }) => {
       <NavigationBarLogo />
       <NavigationBarLinkGroup>
         {links.map(link => (
-          <NavigationBarLinkWrapper>
+          <NavigationBarLinkWrapper key={link.key}>
             <NavigationBarLink to={link.path}>{link.label}</NavigationBarLink>
           </NavigationBarLinkWrapper>
         ))}

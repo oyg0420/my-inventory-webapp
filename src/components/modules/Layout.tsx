@@ -46,7 +46,7 @@ export const LayoutHaeder: React.FC = ({ children }) => {
   return <StyledLayoutHeader>{children}</StyledLayoutHeader>;
 };
 
-export type LinkType = { path: string; label: string };
+export type LinkType = { path: string; label: string; key: string };
 
 type Props = {
   links: LinkType[];
