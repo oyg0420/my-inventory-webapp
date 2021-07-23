@@ -1,3 +1,4 @@
+import { ButtonGroup } from 'components/atoms/Button';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -85,37 +86,51 @@ const HeaderHideButton = styled.button`
   }
 `;
 
-export const ModalFooter: React.FC = ({ children }) => {
+const ModalFooter: React.FC = ({ children }) => {
   return <StyledModalFooter>{children}</StyledModalFooter>;
 };
 
-export const ModalBody: React.FC = ({ children }) => {
+const ModalBody: React.FC = ({ children }) => {
   return <StyledModalBody>{children}</StyledModalBody>;
 };
 
 type ModalHeaderProps = {
-  onHideClick(): void;
+  onHideClick?(): void;
 };
 
-export const ModalHeader: React.FC<ModalHeaderProps> = ({ children, onHideClick }) => {
+const ModalHeader: React.FC<ModalHeaderProps> = ({ children, onHideClick }) => {
   return (
     <StyledModalHeader>
       <HeaderTitle>{children}</HeaderTitle>
-      <HeaderHideButton type="button" onClick={onHideClick}>
-        <span>x</span>
-      </HeaderHideButton>
+      {onHideClick && (
+        <HeaderHideButton type="button" onClick={onHideClick}>
+          <span>x</span>
+        </HeaderHideButton>
+      )}
     </StyledModalHeader>
   );
 };
 
 type Props = {
+  title?: string;
+  buttonGroup?: React.ReactNode;
   onHideClick?(): void;
 };
 
-export const Modal: React.FC<Props> = ({ children }) => {
+const Modal: React.FC<Props> = ({ title, buttonGroup, onHideClick, children }) => {
   return (
     <ModalContainer>
-      <ModalContent>{children}</ModalContent>
+      <ModalContent>
+        <ModalHeader onHideClick={onHideClick}>{title}</ModalHeader>
+        <ModalBody>{children}</ModalBody>
+        {buttonGroup && (
+          <ModalFooter>
+            <ButtonGroup>{buttonGroup}</ButtonGroup>
+          </ModalFooter>
+        )}
+      </ModalContent>
     </ModalContainer>
   );
 };
+
+export default Modal;

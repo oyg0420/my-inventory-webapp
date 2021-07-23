@@ -6,19 +6,17 @@ type Props = {
 };
 
 const Button = styled.button<Props>`
+  display: inline-block;
+  padding: 7px 20px;
+  vertical-align: middle;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
   color: ${props => props.theme.button[props.buttonType || 'secondary'].color};
   background-color: ${props => props.theme.button[props.buttonType || 'secondary'].backgroundColor};
   border: 1px solid ${props => props.theme.button[props.buttonType || 'secondary'].borderColor};
-
-  display: inline-block;
-  font-weight: 400;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  user-select: none;
   border: 1px solid transparent;
-  padding: 7px 20px;
-  font-size: 14px;
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
     box-shadow 0.15s ease-in-out;

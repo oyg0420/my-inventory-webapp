@@ -1,8 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { Link } from 'react-router-dom';
 import IconLogo from 'images/icon-logo.svg';
-import NavigationBarLink from 'components/commons/NavigationBarLink';
+import { LinkType } from './Layout';
+
+export const NavigationBarLink = styled(Link)`
+  color: #6c757d;
+
+  &:active,
+  &:hover {
+    color: #343a40;
+  }
+`;
+
+const NavigationBarLinkWrapper = styled.li``;
 
 const NavigationBarContainer = styled.nav`
   display: flex;
@@ -28,8 +39,6 @@ const NavigationBarLinkGroup = styled.ul`
   margin: 0;
 `;
 
-export type LinkType = { path: string; label: string };
-
 type Props = { links: LinkType[] };
 
 const NavigationBar: React.FC<Props> = ({ links }) => {
@@ -38,7 +47,9 @@ const NavigationBar: React.FC<Props> = ({ links }) => {
       <NavigationBarLogo />
       <NavigationBarLinkGroup>
         {links.map(link => (
-          <NavigationBarLink to={link.path}>{link.label}</NavigationBarLink>
+          <NavigationBarLinkWrapper>
+            <NavigationBarLink to={link.path}>{link.label}</NavigationBarLink>
+          </NavigationBarLinkWrapper>
         ))}
       </NavigationBarLinkGroup>
     </NavigationBarContainer>

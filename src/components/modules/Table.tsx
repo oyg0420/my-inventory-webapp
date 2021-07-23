@@ -50,7 +50,6 @@ const StyledTable = styled.table`
   border-collapse: separate;
   border-spacing: 0;
   box-sizing: border-box;
-  height: 100%;
   width: 100%;
 `;
 
@@ -65,32 +64,79 @@ const TableContainer = styled.div`
   }
 `;
 
-export const TableRow: React.FC = ({ children }) => {
-  return <StyledTableRow>{children}</StyledTableRow>;
+type TableRowProps = {
+  onClick?(): void;
 };
 
-export const TableColumn: React.FC = ({ children }) => {
+const TableRow: React.FC<TableRowProps> = ({ onClick, children }) => {
+  return <StyledTableRow onClick={onClick}>{children}</StyledTableRow>;
+};
+
+const TableColumn: React.FC = ({ children }) => {
   return <StyledTableColumn>{children}</StyledTableColumn>;
 };
 
-export const TableBody: React.FC = ({ children }) => {
+const TableBody: React.FC = ({ children }) => {
   return <StyledTableBody>{children}</StyledTableBody>;
 };
 
 type TableHeaderColumnProps = { columnWidth: string };
 
-export const TableHeaderColumn: React.FC<TableHeaderColumnProps> = ({ columnWidth, children }) => {
+const TableHeaderColumn: React.FC<TableHeaderColumnProps> = ({ columnWidth, children }) => {
   return <StyledTableHeaderColumn columnWidth={columnWidth}>{children}</StyledTableHeaderColumn>;
 };
 
-export const TableHeader: React.FC = ({ children }) => {
+const TableHeader: React.FC = ({ children }) => {
   return <StyledTableHeader>{children}</StyledTableHeader>;
 };
 
-export const Table: React.FC = ({ children }) => {
+type TableColumnType = {
+  title: string;
+  key: string;
+  width: string;
+};
+
+type TableDataColumnType = {
+  element: React.ReactNode;
+  key: string;
+};
+
+type TableDataType = {
+  key: string;
+  colums: TableDataColumnType[];
+};
+
+type Props = {
+  columns: TableColumnType[];
+  data: TableDataType[];
+  onRowClick?(): void;
+};
+
+const Table: React.FC<Props> = ({ columns, data, onRowClick }) => {
   return (
     <TableContainer>
-      <StyledTable>{children}</StyledTable>
+      <StyledTable>
+        <TableHeader>
+          <TableRow>
+            {columns.map(column => (
+              <TableHeaderColumn key={column.key} columnWidth={column.width}>
+                {column.title}
+              </TableHeaderColumn>
+            ))}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {data.map(row => (
+            <TableRow key={row.key} onClick={onRowClick}>
+              {row.colums.map(column => (
+                <TableColumn key={column.key}>{column.element}</TableColumn>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </StyledTable>
     </TableContainer>
   );
 };
+
+export default Table;

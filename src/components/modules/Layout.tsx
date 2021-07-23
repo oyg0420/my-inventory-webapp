@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import NavigationBar from './NavigationBar';
 
 const LayoutContainer = styled.div`
   width: 100%;
@@ -45,6 +46,21 @@ export const LayoutHaeder: React.FC = ({ children }) => {
   return <StyledLayoutHeader>{children}</StyledLayoutHeader>;
 };
 
-export const Layout: React.FC = ({ children }) => {
-  return <LayoutContainer>{children}</LayoutContainer>;
+export type LinkType = { path: string; label: string };
+
+type Props = {
+  links: LinkType[];
 };
+
+const Layout: React.FC<Props> = ({ links, children }) => {
+  return (
+    <LayoutContainer>
+      <LayoutHaeder>
+        <NavigationBar links={links} />
+      </LayoutHaeder>
+      <LayoutBody>{children}</LayoutBody>
+    </LayoutContainer>
+  );
+};
+
+export default Layout;
