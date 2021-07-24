@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ColorType } from '../styles';
+
 type SizeType = 'small' | 'medium' | 'large';
 
 type Props = {
@@ -15,19 +16,19 @@ const Button = styled.button<Props>`
     switch (props.buttonSize) {
       case 'large':
         return `
-        padding: 16px 10px;
+        padding: 16px 20px;
         font-size: 20px;
         `;
-      case 'small':
+      case 'medium':
         return `
-        padding: 8px 10px;
-        font-size: 14px;
-          `;
-      default:
-        return `
-        padding: 12px 10px;
+        padding: 12px 20px;
         font-size: 18px;
         `;
+      default:
+        return `
+        padding: 8px 20px;
+        font-size: 14px;
+          `;
     }
   }}
   text-align: center;

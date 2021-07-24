@@ -2,6 +2,8 @@ import React from 'react';
 import Home from './Home';
 import { Route, Switch } from 'react-router-dom';
 import SignIn from 'components/pages/SignIn';
+import Landing from './Landing';
+import SignUp from './SignUp';
 
 const Main: React.FC = () => {
   const isLoggedIn = false;
@@ -9,11 +11,21 @@ const Main: React.FC = () => {
     <>
       <Switch>
         {isLoggedIn ? (
-          <Home />
+          <>
+            <Home />
+          </>
         ) : (
-          <Route exact path={['/', '/sign_in']}>
-            <SignIn />
-          </Route>
+          <>
+            <Route exact path="/">
+              <Landing />
+            </Route>
+            <Route exact path="/sign_in">
+              <SignIn />
+            </Route>
+            <Route exact path="/sign_up">
+              <SignUp />
+            </Route>
+          </>
         )}
       </Switch>
     </>

@@ -2,7 +2,9 @@ import { createGlobalStyle } from 'styled-components';
 
 export type ColorType = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'light';
 
-interface Color {
+export type InputColorType = 'default' | 'error';
+
+type ButtonColor = {
   backgroundColor: string;
   borderColor: string;
   color: string;
@@ -10,13 +12,34 @@ interface Color {
     backgroundColor: string;
     borderColor: string;
   };
-}
+};
+
+type ParagraphColor = { color: string };
+
+type InputColor = { borderColor: string; onFocus: { borderColor: string; boxShadow: string } };
 
 export interface ThemeType {
-  button: { [key in ColorType]: Color };
+  button: { [key in ColorType]: ButtonColor };
+  paragraph: { [key in ColorType]: ParagraphColor };
+  input: { [key in InputColorType]: InputColor };
 }
 
 export const theme: ThemeType = {
+  input: {
+    default: {
+      borderColor: '#ced4da',
+      onFocus: { borderColor: '#80bdff', boxShadow: ' 0 0 0 0.2rem rgb(0 123 255 / 25%)' },
+    },
+    error: { borderColor: '#dc3545', onFocus: { borderColor: '#dc3545', boxShadow: 'none' } },
+  },
+  paragraph: {
+    primary: { color: '#007bff' },
+    secondary: { color: '#6c757d' },
+    success: { color: '#28a745' },
+    danger: { color: '#dc3545' },
+    warning: { color: '#ffc107' },
+    light: { color: '#f8f9fa' },
+  },
   button: {
     primary: {
       color: '#fff',

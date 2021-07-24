@@ -4,7 +4,7 @@ import Button from 'components/atoms/Button';
 const ButtonGroup = styled.div`
   display: flex;
 
-  ${Button} + ${Button} {
+  > ${Button} + ${Button} {
     margin-left: 5px;
   }
 `;

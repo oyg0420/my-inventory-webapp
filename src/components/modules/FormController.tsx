@@ -9,7 +9,6 @@ const Control = styled.div`
 const FormControlsContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
 `;
 
 type Props = {

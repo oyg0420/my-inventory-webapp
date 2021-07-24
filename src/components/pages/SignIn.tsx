@@ -1,88 +1,108 @@
 import React from 'react';
-import styled from 'styled-components';
-import { useForm, Controller, SubmitHandler, SubmitErrorHandler } from 'react-hook-form';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import Form from 'components/atoms/Form';
 import Input from 'components/atoms/Input';
 import Button from 'components/atoms/Button';
 import { emailRegExp, passwordRegExp } from 'regExp';
-import Icon from 'components/atoms/Icon';
-import IconLogo from 'images/icon-logo.svg';
+import Paragraph from 'components/atoms/Paragraph';
+import { useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
+import FlexBox from 'components/atoms/FlexBox';
+import WithoutAuthBox from 'components/modules/WithoutAuthBox';
+import useFormError from 'hooks/useFormError';
+import { useMemo } from 'react';
 
 type FormValues = {
   email: string;
   password: string;
 };
 
-const SignInContainer = styled.div`
-  display: flex;
-  min-width: 500px;
-  height: 400px;
-  padding: 20px;
-  border: 1px solid #dee2e6;
-  border-radius: 10px;
-  background-color: #fff;
-
-  ${Icon} {
-    margin-bottom: 40px;
-  }
-
-  ${Input} {
-    display: flex;
-    margin-bottom: 10px;
-  }
-`;
-
-const SignInSection = styled.section`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #e3f2fd;
-`;
-
 const SignIn: React.FC = () => {
-  const { control, handleSubmit } = useForm<FormValues>({
-    mode: 'onChange',
+  const history = useHistory();
+  const { control, handleSubmit, formState } = useForm<FormValues>({
+    mode: 'onSubmit',
+    reValidateMode: 'onSubmit',
     defaultValues: {
       email: '',
       password: '',
     },
   });
+  const { getErrorMessage } = useFormError(formState);
+  const emailErrorMessage = useMemo(() => getErrorMessage('email'), [getErrorMessage]);
+  const passwordErrorMessage = useMemo(() => getErrorMessage('password'), [getErrorMessage]);
 
   const onSubmit: SubmitHandler<FormValues> = data => {
-    console.log(data);
+    /**
+     * @todo Action Dispatch
+     */
   };
 
-  const onError: SubmitErrorHandler<FormValues> = erros => {
-    console.log(erros);
-  };
+  const handleSignUpClick = useCallback(() => {
+    history.push('/sign_up');
+  }, [history]);
 
   return (
-    <SignInSection>
-      <SignInContainer>
-        <Form onSubmit={handleSubmit(onSubmit, onError)}>
-          <Icon url={IconLogo} width="200px" height="100px" />
+    <WithoutAuthBox>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <FlexBox styles={{ flexDirection: 'column', margin: '0 0 10px 0' }}>
           <Controller
             control={control}
             name="email"
-            rules={{ required: true, pattern: emailRegExp }}
-            render={({ field: { value, onChange } }) => <Input value={value} onValueChange={onChange} />}
+            rules={{
+              required: '이메일을 입력하세요.',
+              pattern: { value: emailRegExp, message: '올바른 이메일을 입력하세요.' },
+            }}
+            render={({ field: { value, onChange } }) => (
+              <Input
+                inputType={emailErrorMessage ? 'error' : 'default'}
+                value={value}
+                onValueChange={onChange}
+                placeholder="이메일"
+                styles={{ margin: emailErrorMessage ? '' : '0 0 10px 0' }}
+              />
+            )}
           />
+          {formState.errors.email?.message && <Paragraph type="danger">{formState.errors.email?.message}</Paragraph>}
           <Controller
             control={control}
             name="password"
-            rules={{ required: true, pattern: passwordRegExp }}
+            rules={{
+              required: '비밀번호를 입력하세요.',
+              pattern: {
+                value: passwordRegExp,
+                message: '8자 이상 영문 대 소문자, 숫자, 특수문자를 포함한 비밀번호를 입력하세요.',
+              },
+            }}
             render={({ field: { value, onChange } }) => (
-              <Input type="password" value={value} onValueChange={onChange} />
+              <Input
+                inputType={passwordErrorMessage ? 'error' : 'default'}
+                type="password"
+                value={value}
+                onValueChange={onChange}
+                placeholder="비밀번호"
+                styles={{ margin: passwordErrorMessage ? '' : '0 0 10px 0' }}
+              />
             )}
           />
-          <Button type="submit" buttonType="primary" buttonSize="medium">
-            로그인
-          </Button>
-        </Form>
-      </SignInContainer>
-    </SignInSection>
+          {formState.errors.password?.message && (
+            <Paragraph type="danger">{formState.errors.password?.message}</Paragraph>
+          )}
+        </FlexBox>
+        <Button type="submit" buttonType="primary" buttonSize="medium">
+          로그인
+        </Button>
+      </Form>
+      <FlexBox styles={{ justifyContent: 'center' }}>
+        <Paragraph type="secondary">처음이신가요?</Paragraph>
+        <Paragraph
+          type="primary"
+          styles={{ textDecoration: 'underline', cursor: 'pointer' }}
+          onClick={handleSignUpClick}
+        >
+          회원가입
+        </Paragraph>
+      </FlexBox>
+    </WithoutAuthBox>
   );
 };
 

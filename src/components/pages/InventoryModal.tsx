@@ -71,7 +71,7 @@ const InventoryModal: React.FC<Props> = ({ onHideClick }) => {
           rules={{ required: true }}
           render={({ field: { onChange, value } }) => (
             <FormController label="제품명">
-              <Input placeholder="제품명" value={value} onValueChange={onChange} />
+              <Input placeholder="제품명" value={value} onValueChange={onChange} styles={{ width: '100%' }} />
             </FormController>
           )}
         />
@@ -81,7 +81,7 @@ const InventoryModal: React.FC<Props> = ({ onHideClick }) => {
           rules={{ required: true }}
           render={({ field: { onChange, value } }) => (
             <FormController label="바코드">
-              <Input placeholder="바코드" value={value} onValueChange={onChange} />
+              <Input placeholder="바코드" value={value} onValueChange={onChange} styles={{ width: '100%' }} />
             </FormController>
           )}
         />
@@ -91,7 +91,14 @@ const InventoryModal: React.FC<Props> = ({ onHideClick }) => {
           rules={{ required: true, validate: value => +value > 0 }}
           render={({ field: { onChange, value } }) => (
             <FormController label="재고">
-              <Input placeholder="재고" type="number" min="0" value={value} onValueChange={onChange} />
+              <Input
+                placeholder="재고"
+                type="number"
+                min="0"
+                value={value}
+                onValueChange={onChange}
+                styles={{ width: '100%' }}
+              />
             </FormController>
           )}
         />
@@ -101,7 +108,7 @@ const InventoryModal: React.FC<Props> = ({ onHideClick }) => {
           rules={{ required: true }}
           render={({ field: { onChange, value } }) => (
             <FormController label="등록일">
-              <Input type="date" value={value} onValueChange={onChange} />
+              <Input type="date" value={value} onValueChange={onChange} styles={{ width: '100%' }} />
             </FormController>
           )}
         />
