@@ -71,7 +71,12 @@ const InventoryModal: React.FC<Props> = ({ onHideClick }) => {
           rules={{ required: true }}
           render={({ field: { onChange, value } }) => (
             <FormController label="제품명">
-              <Input placeholder="제품명" value={value} onValueChange={onChange} styles={{ width: '100%' }} />
+              <Input
+                placeholder="제품명"
+                value={value}
+                onValueChange={onChange}
+                styles={{ width: '100%', margin: '0 0 10px 0' }}
+              />
             </FormController>
           )}
         />
@@ -81,7 +86,12 @@ const InventoryModal: React.FC<Props> = ({ onHideClick }) => {
           rules={{ required: true }}
           render={({ field: { onChange, value } }) => (
             <FormController label="바코드">
-              <Input placeholder="바코드" value={value} onValueChange={onChange} styles={{ width: '100%' }} />
+              <Input
+                placeholder="바코드"
+                value={value}
+                onValueChange={onChange}
+                styles={{ width: '100%', margin: '0 0 10px 0' }}
+              />
             </FormController>
           )}
         />
@@ -97,7 +107,7 @@ const InventoryModal: React.FC<Props> = ({ onHideClick }) => {
                 min="0"
                 value={value}
                 onValueChange={onChange}
-                styles={{ width: '100%' }}
+                styles={{ width: '100%', margin: '0 0 10px 0' }}
               />
             </FormController>
           )}
@@ -108,7 +118,12 @@ const InventoryModal: React.FC<Props> = ({ onHideClick }) => {
           rules={{ required: true }}
           render={({ field: { onChange, value } }) => (
             <FormController label="등록일">
-              <Input type="date" value={value} onValueChange={onChange} styles={{ width: '100%' }} />
+              <Input
+                type="date"
+                value={value}
+                onValueChange={onChange}
+                styles={{ width: '100%', margin: '0 0 10px 0' }}
+              />
             </FormController>
           )}
         />

@@ -7,6 +7,8 @@ import Portal from 'components/modules/Portal';
 import InventoryModal from 'components/pages/InventoryModal';
 import Button from 'components/atoms/Button';
 import { v4 } from 'uuid';
+import ButtonGroup from 'components/atoms/ButtonGroup';
+import BarcodeCaptureModal from './BarcodeCaptureModal';
 
 const InventoryContainer = styled.div`
   display: flex;
@@ -22,22 +24,36 @@ const InvertoryFilterField = styled.div`
 `;
 
 const Inventory: React.FC = () => {
-  const [show, toggleShow] = useState(false);
+  const [showInventoryModal, toggleShowInventoryModal] = useState(false);
+  const [showBarcodeCaptureModal, toggleShowBarcodeCaptureModal] = useState(false);
 
-  const handleButtonClick = useCallback(() => {
-    toggleShow(true);
+  const handleShowInventoryModalClick = useCallback(() => {
+    toggleShowInventoryModal(true);
   }, []);
 
-  const handleHideClick = useCallback(() => {
-    toggleShow(false);
+  const handleHideInventoryModalClick = useCallback(() => {
+    toggleShowInventoryModal(false);
+  }, []);
+
+  const handleShowBarcodeCaptureModalClick = useCallback(() => {
+    toggleShowBarcodeCaptureModal(true);
+  }, []);
+
+  const handleHideBarcodeCaptureModalClick = useCallback(() => {
+    toggleShowBarcodeCaptureModal(false);
   }, []);
 
   return (
     <InventoryContainer>
       <InvertoryFilterField>
-        <Button buttonType="primary" type="button" onClick={handleButtonClick}>
-          제품 등록
-        </Button>
+        <ButtonGroup>
+          <Button buttonType="primary" type="button" buttonSize="small" onClick={handleShowInventoryModalClick}>
+            제품 등록
+          </Button>
+          <Button buttonType="primary" type="button" buttonSize="small" onClick={handleShowBarcodeCaptureModalClick}>
+            바코드 인식
+          </Button>
+        </ButtonGroup>
       </InvertoryFilterField>
       <Table
         columns={[
@@ -60,7 +76,10 @@ const Inventory: React.FC = () => {
           };
         })}
       />
-      <Portal>{show && <InventoryModal onHideClick={handleHideClick} />}</Portal>
+      <Portal>{showInventoryModal && <InventoryModal onHideClick={handleHideInventoryModalClick} />}</Portal>
+      <Portal>
+        {showBarcodeCaptureModal && <BarcodeCaptureModal onHideClick={handleHideBarcodeCaptureModalClick} />}
+      </Portal>
     </InventoryContainer>
   );
 };
