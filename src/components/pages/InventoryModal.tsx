@@ -13,7 +13,8 @@ type FormValues = {
   productName: string;
   barcode: string;
   stock: number;
-  registerDate: string;
+  expirationDate: string;
+  category: { value: number; label: string };
 };
 
 type Props = {
@@ -28,7 +29,7 @@ const InventoryModal: React.FC<Props> = ({ onHideClick }) => {
       productName: '',
       barcode: '',
       stock: 0,
-      registerDate: moment().format('YYYY-MM-DD'),
+      expirationDate: moment().format('YYYY-MM-DD'),
     },
   });
 
@@ -100,9 +101,9 @@ const InventoryModal: React.FC<Props> = ({ onHideClick }) => {
           name="stock"
           rules={{ required: true, validate: value => +value > 0 }}
           render={({ field: { onChange, value } }) => (
-            <FormController label="재고">
+            <FormController label="수량">
               <Input
-                placeholder="재고"
+                placeholder="수량"
                 type="number"
                 min="0"
                 value={value}
@@ -114,10 +115,10 @@ const InventoryModal: React.FC<Props> = ({ onHideClick }) => {
         />
         <Controller
           control={control}
-          name="registerDate"
+          name="expirationDate"
           rules={{ required: true }}
           render={({ field: { onChange, value } }) => (
-            <FormController label="등록일">
+            <FormController label="유통기한">
               <Input
                 type="date"
                 value={value}
