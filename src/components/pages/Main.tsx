@@ -6,7 +6,7 @@ import Landing from './Landing';
 import SignUp from './SignUp';
 
 const Main: React.FC = () => {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
   return (
     <>
       <Switch>

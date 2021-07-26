@@ -11,6 +11,8 @@ import { useMemo } from 'react';
 import Button from 'components/atoms/Button';
 import { useHistory } from 'react-router-dom';
 import useFormError from 'hooks/useFormError';
+import { useDispatch } from 'react-redux';
+import { signUp } from 'modules/session';
 
 type FormValues = {
   email: string;
@@ -21,6 +23,8 @@ type FormValues = {
 
 const SignUp: React.FC = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const { control, handleSubmit, formState, getValues } = useForm<FormValues>({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
@@ -41,6 +45,7 @@ const SignUp: React.FC = () => {
     /**
      * @todo Action Dispatch
      */
+    dispatch(signUp({ email: data.email, name: data.name, password: data.password }));
   };
 
   const handleSignInClick = useCallback(() => {
