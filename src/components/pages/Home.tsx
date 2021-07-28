@@ -8,7 +8,7 @@ const Home: React.FC = () => {
   return (
     <Layout links={[{ path: '/', label: '제품', key: v4() }]}>
       <Switch>
-        <Route exact path="/">
+        <Route path="/">
           <Inventory />
         </Route>
       </Switch>

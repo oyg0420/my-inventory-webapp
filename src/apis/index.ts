@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Store } from 'redux';
 import qs from 'qs';
 
@@ -39,10 +39,13 @@ export const setAuthenticationHeader = (token?: string | null): void => {
 };
 
 const API = {
-  get: (url: string, config: AxiosRequestConfig) => instance.get(url, config),
-  delete: (url: string, config: AxiosRequestConfig) => instance.delete(url, config),
-  post: (url: string, data: any, config: AxiosRequestConfig) => instance.post(url, data, config),
-  put: (url: string, data: any, config: AxiosRequestConfig) => instance.put(url, data, config),
+  get: <T = any>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => instance.get(url, config),
+  delete: <T = any>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> =>
+    instance.delete(url, config),
+  post: <T = any>(url: string, data: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> =>
+    instance.post(url, data, config),
+  put: <T = any>(url: string, data: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> =>
+    instance.put(url, data, config),
 };
 
 export default API;

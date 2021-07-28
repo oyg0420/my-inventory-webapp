@@ -4,16 +4,18 @@ import { Route, Switch } from 'react-router-dom';
 import SignIn from 'components/pages/SignIn';
 import Landing from './Landing';
 import SignUp from './SignUp';
+import { useSelector } from 'react-redux';
+import selectUser from 'modules/session/selector';
 
 const Main: React.FC = () => {
-  const isLoggedIn = false;
+  const isLoggedIn = useSelector(selectUser.isLoggedIn);
   return (
     <>
       <Switch>
         {isLoggedIn ? (
-          <>
+          <Route path="/">
             <Home />
-          </>
+          </Route>
         ) : (
           <>
             <Route exact path="/">

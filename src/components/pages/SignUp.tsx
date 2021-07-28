@@ -45,7 +45,7 @@ const SignUp: React.FC = () => {
     /**
      * @todo Action Dispatch
      */
-    dispatch(signUp({ email: data.email, name: data.name, password: data.password }));
+    dispatch(signUp({ email: data.email, name: data.name, password: data.password, history }));
   };
 
   const handleSignInClick = useCallback(() => {
