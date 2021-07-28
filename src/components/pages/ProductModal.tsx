@@ -21,7 +21,7 @@ type Props = {
   onHideClick(): void;
 };
 
-const InventoryModal: React.FC<Props> = ({ onHideClick }) => {
+const ProductModal: React.FC<Props> = ({ onHideClick }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const { formState, control, handleSubmit } = useForm<FormValues>({
     mode: 'onChange',
@@ -134,4 +134,4 @@ const InventoryModal: React.FC<Props> = ({ onHideClick }) => {
   );
 };
 
-export default InventoryModal;
+export default ProductModal;

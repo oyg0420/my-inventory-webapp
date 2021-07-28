@@ -4,35 +4,35 @@ import styled from 'styled-components';
 import { useCallback } from 'react';
 import { useState } from 'react';
 import Portal from 'components/modules/Portal';
-import InventoryModal from 'components/pages/InventoryModal';
+import ProductModal from 'components/pages/ProductModal';
 import Button from 'components/atoms/Button';
 import { v4 } from 'uuid';
 import ButtonGroup from 'components/atoms/ButtonGroup';
 import BarcodeCaptureModal from './BarcodeCaptureModal';
 
-const InventoryContainer = styled.div`
+const ProductContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
   padding: 0 10px;
 `;
 
-const InvertoryFilterField = styled.div`
+const ProductFilterField = styled.div`
   display: flex;
   align-items: center;
   height: 100px;
 `;
 
-const Inventory: React.FC = () => {
-  const [showInventoryModal, toggleShowInventoryModal] = useState(false);
+const Products: React.FC = () => {
+  const [showProductModal, toggleShowProductModal] = useState(false);
   const [showBarcodeCaptureModal, toggleShowBarcodeCaptureModal] = useState(false);
 
-  const handleShowInventoryModalClick = useCallback(() => {
-    toggleShowInventoryModal(true);
+  const handleShowProductModalClick = useCallback(() => {
+    toggleShowProductModal(true);
   }, []);
 
-  const handleHideInventoryModalClick = useCallback(() => {
-    toggleShowInventoryModal(false);
+  const handleHideProductModalClick = useCallback(() => {
+    toggleShowProductModal(false);
   }, []);
 
   const handleShowBarcodeCaptureModalClick = useCallback(() => {
@@ -44,17 +44,17 @@ const Inventory: React.FC = () => {
   }, []);
 
   return (
-    <InventoryContainer>
-      <InvertoryFilterField>
+    <ProductContainer>
+      <ProductFilterField>
         <ButtonGroup>
-          <Button buttonType="primary" type="button" buttonSize="small" onClick={handleShowInventoryModalClick}>
+          <Button buttonType="primary" type="button" buttonSize="small" onClick={handleShowProductModalClick}>
             제품 등록
           </Button>
           <Button buttonType="primary" type="button" buttonSize="small" onClick={handleShowBarcodeCaptureModalClick}>
             바코드 인식
           </Button>
         </ButtonGroup>
-      </InvertoryFilterField>
+      </ProductFilterField>
       <Table
         columns={[
           { title: '이미지', key: v4(), width: '20%' },
@@ -76,12 +76,12 @@ const Inventory: React.FC = () => {
           };
         })}
       />
-      <Portal>{showInventoryModal && <InventoryModal onHideClick={handleHideInventoryModalClick} />}</Portal>
+      <Portal>{showProductModal && <ProductModal onHideClick={handleHideProductModalClick} />}</Portal>
       <Portal>
         {showBarcodeCaptureModal && <BarcodeCaptureModal onHideClick={handleHideBarcodeCaptureModalClick} />}
       </Portal>
-    </InventoryContainer>
+    </ProductContainer>
   );
 };
 
-export default Inventory;
+export default Products;
