@@ -1,7 +1,8 @@
 import { all, call, delay, spawn } from 'redux-saga/effects';
 import { sessionSaga } from 'modules/session/saga';
+import keywordSaga from 'modules/keyword/sage';
 
-const sagas = [sessionSaga];
+const sagas = [sessionSaga, keywordSaga];
 
 export default function* rootSaga(): Generator {
   /**

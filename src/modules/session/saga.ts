@@ -13,7 +13,6 @@ import {
 import { ActionType } from 'typesafe-actions';
 import { postSignIn, PostSignInResponse, postSignUp } from 'apis/SessionAPI';
 import { setAuthenticationHeader } from 'apis';
-import { useHistory } from 'react-router-dom';
 
 function* requestSignIn(payload: SignInPayload) {
   try {
