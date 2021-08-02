@@ -23,7 +23,7 @@ function* requestSignIn(payload: SignInPayload) {
   }
 }
 
-function* handleSignInSuccessed(action: ReturnType<typeof signInSuccessed>) {
+function* handleSignInSuccessed(action: ActionType<typeof signInSuccessed>) {
   yield call(setAuthenticationHeader, action.payload.user.token);
 }
 

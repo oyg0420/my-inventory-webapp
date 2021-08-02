@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { Store } from 'redux';
 import qs from 'qs';
 
 const instance = axios.create({
@@ -14,7 +13,7 @@ const instance = axios.create({
   },
 });
 
-export const configureAxios = (store: Store) => {
+export const configureAxios = () => {
   instance.interceptors.request.use(
     config => {
       return config;

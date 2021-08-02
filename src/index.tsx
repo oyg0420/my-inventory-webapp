@@ -7,6 +7,9 @@ import { ThemeProvider } from 'styled-components';
 import { theme, GlobalStyle } from 'components/styles';
 import Main from 'components/pages/Main';
 import { PersistGate } from 'redux-persist/es/integration/react';
+import { configureAxios } from 'apis';
+
+configureAxios();
 
 ReactDOM.render(
   <Provider store={configStore.store}>

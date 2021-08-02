@@ -9,7 +9,7 @@ const StyledInput = styled.input<{
   display: block;
   ${props => props.styles?.width && `width: ${props.styles.width};`}
   ${props => props.styles?.margin && `margin: ${props.styles.margin};`}
-  padding: 0.375rem 0.75rem;
+  padding: .375rem .75rem;
   font-size: 14px;
   line-height: 1.5;
   color: #495057;

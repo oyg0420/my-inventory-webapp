@@ -24,6 +24,7 @@ export const StyledLayoutHeader = styled.header`
 
 export const StyledLayoutMain = styled.main`
   height: 100%;
+  flex: 1;
   overflow: hidden;
   display: flex;
 `;
@@ -35,6 +36,23 @@ export const StyledLayoutSection = styled.section`
   display: flex;
   flex-direction: column;
 `;
+
+const LayoutContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+`;
+
+const StyledSideBar = styled.div`
+  width: 200px;
+  background-color: #f8f9fa;
+  padding: 1rem;
+  flex-direction: column;
+`;
+
+export const LayoutSideBar: React.FC = ({ children }) => {
+  return <StyledSideBar>{children}</StyledSideBar>;
+};
 
 export const LayoutBody: React.FC = ({ children }) => {
   return (
@@ -60,7 +78,10 @@ const Layout: React.FC<Props> = ({ links, children }) => {
       <LayoutHaeder>
         <NavigationBar links={links} />
       </LayoutHaeder>
-      <LayoutBody>{children}</LayoutBody>
+      <LayoutContent>
+        <LayoutSideBar></LayoutSideBar>
+        <LayoutBody>{children}</LayoutBody>
+      </LayoutContent>
     </LayoutContainer>
   );
 };
