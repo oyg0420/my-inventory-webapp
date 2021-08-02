@@ -29,7 +29,7 @@ export type GetKeywordsResponse = {
 };
 
 const getKeywords = async (params: GetKeywordsParams) => {
-  const res = await API.get<GetKeywordsResponse>('/keywords', {
+  const res = await API.get<GetKeywordsResponse>('/keywords/keywordtools', {
     params: {
       keyword: params.keyword,
     },

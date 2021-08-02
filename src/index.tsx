@@ -8,6 +8,7 @@ import { theme, GlobalStyle } from 'components/styles';
 import Main from 'components/pages/Main';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { configureAxios } from 'apis';
+import Spinner from 'components/modules/Spinner';
 
 configureAxios();
 
@@ -16,7 +17,7 @@ ReactDOM.render(
     <BrowserRouter>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <PersistGate loading={null} persistor={configStore.persistor}>
+        <PersistGate loading={<Spinner />} persistor={configStore.persistor}>
           <Main />
         </PersistGate>
       </ThemeProvider>

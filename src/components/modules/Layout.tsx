@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import NavigationBar from './NavigationBar';
+import Spinner from './Spinner';
 
 const LayoutContainer = styled.div`
   display: flex;
@@ -75,6 +76,7 @@ type Props = {
 const Layout: React.FC<Props> = ({ links, children }) => {
   return (
     <LayoutContainer>
+      {<Spinner />}
       <LayoutHaeder>
         <NavigationBar links={links} />
       </LayoutHaeder>
