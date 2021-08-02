@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import NavigationBar from './NavigationBar';
 import Spinner from './Spinner';
 import selectSpinner from 'modules/spinner/selector';
+import SideBar from './SideBar';
 
 const LayoutContainer = styled.div`
   display: flex;
@@ -46,17 +47,6 @@ const LayoutContent = styled.div`
   height: 100%;
 `;
 
-const StyledSideBar = styled.div`
-  width: 200px;
-  background-color: #f8f9fa;
-  padding: 1rem;
-  flex-direction: column;
-`;
-
-export const LayoutSideBar: React.FC = ({ children }) => {
-  return <StyledSideBar>{children}</StyledSideBar>;
-};
-
 export const LayoutBody: React.FC = ({ children }) => {
   return (
     <StyledLayoutMain>
@@ -84,7 +74,7 @@ const Layout: React.FC<Props> = ({ links, children }) => {
         <NavigationBar links={links} />
       </LayoutHaeder>
       <LayoutContent>
-        <LayoutSideBar></LayoutSideBar>
+        <SideBar />
         <LayoutBody>{children}</LayoutBody>
       </LayoutContent>
     </LayoutContainer>

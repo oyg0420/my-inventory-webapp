@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import IconLogo from 'images/icon-logo.svg';
 import { LinkType } from './Layout';
+import BarLogo from 'components/atoms/BarLogo';
 
 export const NavigationBarLink = styled(Link)`
   color: #6c757d;
@@ -24,17 +24,6 @@ const NavigationBarContainer = styled.nav`
   background-color: #e3f2fd;
 `;
 
-const NavigationBarLogo = styled.svg`
-  width: 100px;
-
-  background-image: url(${IconLogo});
-  background-size: 60px;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  cursor: pointer;
-`;
-
 const NavigationBarLinkGroup = styled.ul`
   margin: 0;
 `;
@@ -44,7 +33,7 @@ type Props = { links: LinkType[] };
 const NavigationBar: React.FC<Props> = ({ links }) => {
   return (
     <NavigationBarContainer>
-      <NavigationBarLogo />
+      <BarLogo />
       <NavigationBarLinkGroup>
         {links.map(link => (
           <NavigationBarLinkWrapper key={link.key}>
