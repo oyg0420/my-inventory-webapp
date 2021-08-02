@@ -96,7 +96,7 @@ const Keywords: React.FC = () => {
   return (
     <KeywordContainer>
       <KeywordFilterField>
-        <FlexBox styles={{ flexDirection: 'column', margin: '10px 0 0 0' }}>
+        <FlexBox styles={{ flexDirection: 'column', margin: '10px 0 0 0', flex: 1 }}>
           <InputAddon>
             <Input value={keyword} onValueChange={handleSearchKeywordChange} onKeyPress={handleKeypress} />
             <span>

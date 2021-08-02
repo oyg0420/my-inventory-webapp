@@ -63,7 +63,7 @@ export const LayoutHaeder: React.FC = ({ children }) => {
 export type LinkType = { path: string; label: string; key: string };
 
 type Props = {
-  links: LinkType[];
+  links?: LinkType[];
 };
 
 const Layout: React.FC<Props> = ({ links, children }) => {

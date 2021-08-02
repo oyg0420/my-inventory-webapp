@@ -28,14 +28,14 @@ const NavigationBarLinkGroup = styled.ul`
   margin: 0;
 `;
 
-type Props = { links: LinkType[] };
+type Props = { links?: LinkType[] };
 
 const NavigationBar: React.FC<Props> = ({ links }) => {
   return (
     <NavigationBarContainer>
       <BarLogo />
       <NavigationBarLinkGroup>
-        {links.map(link => (
+        {links?.map(link => (
           <NavigationBarLinkWrapper key={link.key}>
             <NavigationBarLink to={link.path}>{link.label}</NavigationBarLink>
           </NavigationBarLinkWrapper>
