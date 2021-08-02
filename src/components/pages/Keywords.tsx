@@ -1,18 +1,14 @@
-import React, { KeyboardEvent } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Table from 'components/modules/Table';
 import styled from 'styled-components';
-import { useCallback } from 'react';
-import { useState } from 'react';
 import { v4 } from 'uuid';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteKeyword, fetchKeywords } from 'modules/keyword';
-import Input from 'components/atoms/Input';
+import { deleteKeyword, fetchKeywords, leaveKeywords } from 'modules/keyword';
 import selectKeyword from 'modules/keyword/selector';
 import Icon from 'components/atoms/Icon';
-import IconSearch from 'images/icon-search.svg';
 import IconTrashRed from 'images/icon-trash-red.svg';
-import InputAddon from 'components/atoms/InputAddon';
 import FlexBox from 'components/atoms/FlexBox';
+import SearchInput from 'components/modules/SearchInput';
 
 const KeywordContainer = styled.div`
   display: flex;
@@ -59,28 +55,21 @@ const RelKeywordList = styled.ul`
 `;
 
 const Keywords: React.FC = () => {
-  const [keyword, setKeyword] = useState('');
   const keywordList = useSelector(selectKeyword.list);
   const relativeKeywords = useSelector(selectKeyword.relativeKeywords);
+  const keyword = useSelector(selectKeyword.keyword);
 
   const dispatch = useDispatch();
 
-  const handleSearchKeywordChange = useCallback((nextKeyword: string) => {
-    setKeyword(nextKeyword);
-  }, []);
-
   const handleKeypress = useCallback(
-    (event: KeyboardEvent<HTMLInputElement>) => {
-      if (event.key === 'Enter') {
-        dispatch(fetchKeywords({ keyword }));
-      }
+    (nextKeyword: string) => {
+      dispatch(fetchKeywords({ keyword: nextKeyword }));
     },
-    [dispatch, keyword]
+    [dispatch]
   );
 
   const handleRelKeywordClick = useCallback(
     (nextKeyword: string) => {
-      setKeyword(nextKeyword);
       dispatch(fetchKeywords({ keyword: nextKeyword }));
     },
     [dispatch]
@@ -97,12 +86,7 @@ const Keywords: React.FC = () => {
     <KeywordContainer>
       <KeywordFilterField>
         <FlexBox styles={{ flexDirection: 'column', margin: '10px 0 0 0', flex: 1 }}>
-          <InputAddon>
-            <Input value={keyword} onValueChange={handleSearchKeywordChange} onKeyPress={handleKeypress} />
-            <span>
-              <Icon url={IconSearch} width="16px" height="16px" />
-            </span>
-          </InputAddon>
+          <SearchInput originKeyword={keyword} onEnterKeyPress={handleKeypress} />
           <RelKeywordList>
             {(relativeKeywords || []).map(relativeKeyword => (
               <RelKeywordItem onClick={() => handleRelKeywordClick(relativeKeyword)}>{relativeKeyword}</RelKeywordItem>

@@ -87,16 +87,19 @@ const SideBar: React.FC = () => {
       <SideBarMenuList>
         <SideBarMenuItem>
           <SideBarMenuLink
-            className={classNames({ active: location.pathname === '/keyword' })}
-            onClick={() => history.push('/keyword')}
+            className={classNames({ active: location.pathname === '/keywords' })}
+            onClick={() => history.push('/keywords')}
           >
-            <SideBarMenuIcon styles={{ url: location.pathname === '/keyword' ? IconBasketWhite : IconBasket }} />
+            <SideBarMenuIcon styles={{ url: location.pathname === '/keywords' ? IconBasketWhite : IconBasket }} />
             <span>쇼핑 키워드</span>
           </SideBarMenuLink>
         </SideBarMenuItem>
         <SideBarMenuItem>
-          <SideBarMenuLink onClick={() => history.push('/')}>
-            <SideBarMenuIcon styles={{ url: IconBasket }} />
+          <SideBarMenuLink
+            className={classNames({ active: location.pathname === '/relKeywords' })}
+            onClick={() => history.push('/relKeywords')}
+          >
+            <SideBarMenuIcon styles={{ url: location.pathname === '/relKeywords' ? IconBasketWhite : IconBasket }} />
             <span>연관 키워드</span>
           </SideBarMenuLink>
         </SideBarMenuItem>

@@ -1,12 +1,12 @@
 import Input from 'components/atoms/Input';
 import styled from 'styled-components';
 
-const InputAddon = styled.div`
+const InputAddon = styled.div<{ styles?: { width?: string } }>`
   position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
-  width: 100%;
+  width: ${props => props.styles?.width || '100%'};
 
   ${Input} {
     border-top-right-radius: 0;
@@ -33,11 +33,17 @@ const InputAddon = styled.div`
     color: #212529;
     text-align: center;
     white-space: nowrap;
-    background-color: #e9ecef;
-    border: 1px solid #ced4da;
+    background-color: #6c757d;
+    border: 1px solid #6c757d;
     border-radius: 0.25rem;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+  }
+
+  span:hover {
+    color: #fff;
+    background-color: #5c636a;
+    border-color: #565e64;
   }
 `;
 
