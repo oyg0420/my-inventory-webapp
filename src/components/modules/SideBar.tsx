@@ -41,7 +41,7 @@ const SideBarMenuLink = styled.div`
 
   &.active {
     color: #fff;
-    background-color: #0d6efd;
+    background-color: #20c997;
   }
 
   > span {

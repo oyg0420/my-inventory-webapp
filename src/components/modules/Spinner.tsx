@@ -27,7 +27,7 @@ const Loader = styled.div<{ delay: string }>`
   width: 2rem;
   height: 2rem;
   vertical-align: text-bottom;
-  background-color: #17a2b8;
+  background-color: #20c997;
   border-radius: 50%;
   opacity: 0;
   animation-delay: ${props => props.delay};

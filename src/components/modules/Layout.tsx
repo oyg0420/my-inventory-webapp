@@ -27,10 +27,11 @@ export const StyledLayoutHeader = styled.header`
 `;
 
 export const StyledLayoutMain = styled.main`
-  height: 100%;
+  height: calc(100% - 28px);
   flex: 1;
   overflow: hidden;
   display: flex;
+  padding-top: 28px;
 `;
 
 export const StyledLayoutSection = styled.section`

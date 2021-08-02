@@ -21,7 +21,7 @@ const NavigationBarContainer = styled.nav`
   padding: 0 10px;
   height: 100%;
   width: 100%;
-  background-color: #e3f2fd;
+  border: solid 1px #dee2e6;
 `;
 
 const NavigationBarLinkGroup = styled.ul`
