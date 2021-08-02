@@ -1,7 +1,9 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import NavigationBar from './NavigationBar';
 import Spinner from './Spinner';
+import selectSpinner from 'modules/spinner/selector';
 
 const LayoutContainer = styled.div`
   display: flex;
@@ -74,9 +76,10 @@ type Props = {
 };
 
 const Layout: React.FC<Props> = ({ links, children }) => {
+  const show = useSelector(selectSpinner.show);
   return (
     <LayoutContainer>
-      {<Spinner />}
+      {show && <Spinner />}
       <LayoutHaeder>
         <NavigationBar links={links} />
       </LayoutHaeder>
