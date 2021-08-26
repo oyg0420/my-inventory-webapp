@@ -1,4 +1,3 @@
-import ButtonGroup from 'components/atoms/ButtonGroup';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -111,26 +110,22 @@ const ModalHeader: React.FC<ModalHeaderProps> = ({ children, onHideClick }) => {
   );
 };
 
-type Props = {
-  title?: string;
-  buttonGroup?: React.ReactNode;
-  onHideClick?(): void;
+type ModalComponent = {
+  Header: React.FC<ModalHeaderProps>;
+  Body: React.FC;
+  Footer: React.FC;
 };
 
-const Modal: React.FC<Props> = ({ title, buttonGroup, onHideClick, children }) => {
+const Modal: React.FC & ModalComponent = ({ children }) => {
   return (
     <ModalContainer>
-      <ModalContent>
-        <ModalHeader onHideClick={onHideClick}>{title}</ModalHeader>
-        <ModalBody>{children}</ModalBody>
-        {buttonGroup && (
-          <ModalFooter>
-            <ButtonGroup>{buttonGroup}</ButtonGroup>
-          </ModalFooter>
-        )}
-      </ModalContent>
+      <ModalContent>{children}</ModalContent>
     </ModalContainer>
   );
 };
+
+Modal.Header = ModalHeader;
+Modal.Body = ModalBody;
+Modal.Footer = ModalFooter;
 
 export default Modal;
