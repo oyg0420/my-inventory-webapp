@@ -23,6 +23,8 @@ export const StyledLayoutHeader = styled.header`
   height: 50px;
   background-color: #fff;
   position: relative;
+  padding: 5px 20px;
+  background-color: #20c997;
 `;
 
 export const StyledLayoutMain = styled.main`

@@ -8,7 +8,7 @@ const SideBarContainer = styled.div`
   flex-wrap: nowrap;
   background-color: #fff;
   width: 200px;
-  padding: 1rem;
+  padding: 20px;
   flex-direction: column;
   box-shadow: 0 0.125em 0.5em rgb(0 0 0 / 15%);
 

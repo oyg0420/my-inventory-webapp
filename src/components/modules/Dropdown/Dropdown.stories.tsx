@@ -15,10 +15,10 @@ const Template: Story = arg => (
       <Avatar />
     </Dropdown.Button>
     <Dropdown.Menu>
-      <Dropdown.Item value="test-1">test-1</Dropdown.Item>
-      <Dropdown.Item value="test-2">test-2</Dropdown.Item>
-      <Dropdown.Item value="test-3">test-3</Dropdown.Item>
-      <Dropdown.Item value="test-4">test-4</Dropdown.Item>
+      <Dropdown.MenuItem value="test-1">test-1</Dropdown.MenuItem>
+      <Dropdown.MenuItem value="test-2">test-2</Dropdown.MenuItem>
+      <Dropdown.MenuItem value="test-3">test-3</Dropdown.MenuItem>
+      <Dropdown.MenuItem value="test-4">test-4</Dropdown.MenuItem>
     </Dropdown.Menu>
   </Dropdown>
 );

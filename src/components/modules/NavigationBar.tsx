@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { LinkType } from './Layout';
-import BarLogo from 'components/atoms/BarLogo';
 
-export const NavigationBarLink = styled(Link)`
+export const StyledNavigationBarLink = styled(Link)`
   color: #6c757d;
 
   &:active,
@@ -13,7 +11,7 @@ export const NavigationBarLink = styled(Link)`
   }
 `;
 
-const NavigationBarLinkWrapper = styled.li``;
+const StyledNavigationBarMenuItem = styled.li``;
 
 const NavigationBarContainer = styled.nav`
   display: flex;
@@ -21,28 +19,38 @@ const NavigationBarContainer = styled.nav`
   padding: 0 10px;
   height: 100%;
   width: 100%;
-  border: solid 1px #dee2e6;
 `;
 
-const NavigationBarLinkGroup = styled.ul`
+const StyledNavigationBarMenu = styled.ul`
   margin: 0;
 `;
 
-type Props = { links?: LinkType[] };
+type NavitionBarMenuLinkProps = { path: string };
 
-const NavigationBar: React.FC<Props> = ({ links }) => {
-  return (
-    <NavigationBarContainer>
-      <BarLogo />
-      <NavigationBarLinkGroup>
-        {links?.map(link => (
-          <NavigationBarLinkWrapper key={link.key}>
-            <NavigationBarLink to={link.path}>{link.label}</NavigationBarLink>
-          </NavigationBarLinkWrapper>
-        ))}
-      </NavigationBarLinkGroup>
-    </NavigationBarContainer>
-  );
+type NavigationBarComponent = {
+  Menu: React.FC;
+  Item: React.FC;
+  Link: React.FC<NavitionBarMenuLinkProps>;
 };
+
+const NavitionBarMenuLink: React.FC<NavitionBarMenuLinkProps> = ({ path, children }) => {
+  return <StyledNavigationBarLink to={path}>{children}</StyledNavigationBarLink>;
+};
+
+const NavitionBarMenuItem: React.FC = ({ children }) => {
+  return <StyledNavigationBarMenuItem>{children}</StyledNavigationBarMenuItem>;
+};
+
+const NavigationBarMenu: React.FC = ({ children }) => {
+  return <StyledNavigationBarMenu>{children}</StyledNavigationBarMenu>;
+};
+
+const NavigationBar: React.FC & NavigationBarComponent = ({ children }) => {
+  return <NavigationBarContainer>{children}</NavigationBarContainer>;
+};
+
+NavigationBar.Menu = NavigationBarMenu;
+NavigationBar.Item = NavitionBarMenuItem;
+NavigationBar.Link = NavitionBarMenuLink;
 
 export default NavigationBar;

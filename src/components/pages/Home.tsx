@@ -13,13 +13,26 @@ import { useSelector } from 'react-redux';
 import selectUser from 'modules/session/selector';
 import FlexBox from 'components/atoms/FlexBox';
 import Span from 'components/atoms/Span';
+import Dropdown from 'components/modules/Dropdown';
 
 const Home: React.FC = () => {
   const user = useSelector(selectUser.user);
   return (
     <Layout>
       <Layout.Header>
-        <NavigationBar />
+        <NavigationBar>
+          <NavigationBar.Menu></NavigationBar.Menu>
+        </NavigationBar>
+        <Dropdown onSelect={() => {}}>
+          <Dropdown.Button>
+            <Avatar url={user.avatar} type="small" />
+          </Dropdown.Button>
+          <Dropdown.Menu styles={{ left: 'auto', right: '0', margin: '2px 0 0 0' }}>
+            <Dropdown.MenuItem value="signOut" styles={{ textAlign: 'center' }}>
+              {translate('sign_out')}
+            </Dropdown.MenuItem>
+          </Dropdown.Menu>
+        </Dropdown>
       </Layout.Header>
       <Layout.Content>
         <Layout.SideBar>
