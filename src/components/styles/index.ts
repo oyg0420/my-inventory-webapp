@@ -4,6 +4,8 @@ export type ColorType = 'primary' | 'secondary' | 'success' | 'danger' | 'warnin
 
 export type InputColorType = 'default' | 'error';
 
+export type AvatarType = 'default' | 'large' | 'small';
+
 type ButtonColor = {
   backgroundColor: string;
   borderColor: string;
@@ -18,13 +20,37 @@ type ParagraphColor = { color: string };
 
 type InputColor = { borderColor: string; onFocus: { borderColor: string; boxShadow: string } };
 
+type AvatarSize = {
+  width: string;
+  height: string;
+  backgroundSize: string;
+};
+
 export interface ThemeType {
   button: { [key in ColorType]: ButtonColor };
   paragraph: { [key in ColorType]: ParagraphColor };
   input: { [key in InputColorType]: InputColor };
+  avatar: { [key in AvatarType]: AvatarSize };
 }
 
 export const theme: ThemeType = {
+  avatar: {
+    default: {
+      width: '40px',
+      height: '40px',
+      backgroundSize: '40px',
+    },
+    large: {
+      width: '56px',
+      height: '56px',
+      backgroundSize: '56px',
+    },
+    small: {
+      width: '24px',
+      height: '24px',
+      backgroundSize: '24px',
+    },
+  },
   input: {
     default: {
       borderColor: '#ced4da',

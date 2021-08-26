@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 type IconStyleProps = {
   url: string;
-  width: string;
-  height: string;
+  width?: string;
+  height?: string;
 };
 
 const Icon = styled.i<IconStyleProps>`
