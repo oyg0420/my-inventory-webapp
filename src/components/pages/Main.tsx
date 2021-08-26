@@ -3,11 +3,10 @@ import Home from './Home';
 import { Route, Switch } from 'react-router-dom';
 import SignIn from 'components/pages/SignIn';
 import SignUp from './SignUp';
-import { useSelector } from 'react-redux';
-import selectUser from 'modules/session/selector';
+import useSession from 'hooks/useSession';
 
 const Main: React.FC = () => {
-  const isLoggedIn = useSelector(selectUser.isLoggedIn);
+  const { isLoggedIn } = useSession();
   return (
     <>
       <Switch>

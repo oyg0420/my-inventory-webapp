@@ -9,21 +9,21 @@ import NavigationBar from 'components/modules/NavigationBar';
 import SideBar from 'components/modules/SideBar';
 import { translate } from 'utils/locale';
 import Avatar from 'components/atoms/Avatar';
-import { useSelector } from 'react-redux';
-import selectUser from 'modules/session/selector';
 import FlexBox from 'components/atoms/FlexBox';
 import Span from 'components/atoms/Span';
 import Dropdown from 'components/modules/Dropdown';
+import useSession from 'hooks/useSession';
 
 const Home: React.FC = () => {
-  const user = useSelector(selectUser.user);
+  const { user, requestSignOut } = useSession();
+
   return (
     <Layout>
       <Layout.Header>
         <NavigationBar>
           <NavigationBar.Menu></NavigationBar.Menu>
         </NavigationBar>
-        <Dropdown onSelect={() => {}}>
+        <Dropdown onSelect={requestSignOut}>
           <Dropdown.Button>
             <Avatar url={user.avatar} type="small" />
           </Dropdown.Button>

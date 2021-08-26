@@ -11,8 +11,7 @@ import FlexBox from 'components/atoms/FlexBox';
 import WithoutAuthBox from 'components/modules/WithoutAuthBox';
 import useFormError from 'hooks/useFormError';
 import { useMemo } from 'react';
-import { useDispatch } from 'react-redux';
-import { signIn } from 'modules/session';
+import useSession from 'hooks/useSession';
 
 type FormValues = {
   email: string;
@@ -21,7 +20,7 @@ type FormValues = {
 
 const SignIn: React.FC = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
+  const { requestSignIn } = useSession();
   const { control, handleSubmit, formState } = useForm<FormValues>({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
@@ -35,10 +34,7 @@ const SignIn: React.FC = () => {
   const passwordErrorMessage = useMemo(() => getErrorMessage('password'), [getErrorMessage]);
 
   const onSubmit: SubmitHandler<FormValues> = data => {
-    /**
-     * @todo Action Dispatch
-     */
-    dispatch(signIn({ email: data.email, password: data.password }));
+    requestSignIn({ email: data.email, password: data.password });
   };
 
   const handleSignUpClick = useCallback(() => {

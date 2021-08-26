@@ -11,8 +11,7 @@ import { useMemo } from 'react';
 import Button from 'components/atoms/Button';
 import { useHistory } from 'react-router-dom';
 import useFormError from 'hooks/useFormError';
-import { useDispatch } from 'react-redux';
-import { signUp } from 'modules/session';
+import useSession from 'hooks/useSession';
 
 type FormValues = {
   email: string;
@@ -23,7 +22,7 @@ type FormValues = {
 
 const SignUp: React.FC = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
+  const { requestSignUp } = useSession();
 
   const { control, handleSubmit, formState, getValues } = useForm<FormValues>({
     mode: 'onSubmit',
@@ -42,10 +41,7 @@ const SignUp: React.FC = () => {
   const passwordCheckErrorMessage = useMemo(() => getErrorMessage('passwordCheck'), [getErrorMessage]);
 
   const onSubmit: SubmitHandler<FormValues> = data => {
-    /**
-     * @todo Action Dispatch
-     */
-    dispatch(signUp({ email: data.email, name: data.name, password: data.password, history }));
+    requestSignUp({ email: data.email, name: data.name, password: data.password, history });
   };
 
   const handleSignInClick = useCallback(() => {
