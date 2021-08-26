@@ -16,31 +16,34 @@ const RelKeywordTable: React.FC<Props> = ({ keywordList }) => {
   }, [keywordList]);
 
   return (
-    <Table
-      columns={[
-        { title: '연관 키워드', key: v4(), width: '10%' },
-        { title: 'PC 검색량', key: v4(), width: '10%' },
-        { title: 'Mobile 검색량', key: v4(), width: '10%' },
-        { title: 'PC 클릭율', key: v4(), width: '10%' },
-        { title: 'Moblie 클릭율', key: v4(), width: '10%' },
-        { title: '경쟁강도', key: v4(), width: '10%' },
-        { title: '평균노출 광고수', key: v4(), width: '10%' },
-      ]}
-      data={relKeywords.map((keywordItem, keywordItemIdx) => {
-        return {
-          key: v4(),
-          colums: [
-            { key: v4(), element: keywordItem.relKeyword },
-            { key: v4(), element: keywordItem.monthlyPcQcCnt },
-            { key: v4(), element: keywordItem.monthlyMobileQcCnt },
-            { key: v4(), element: keywordItem.monthlyAvePcClkCnt },
-            { key: v4(), element: keywordItem.monthlyAveMobileClkCnt },
-            { key: v4(), element: keywordItem.compIdx },
-            { key: v4(), element: keywordItem.plAvgDepth },
-          ],
-        };
-      })}
-    />
+    <Table>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderColumn columnWidth="10%">연관 키워드</Table.HeaderColumn>
+          <Table.HeaderColumn columnWidth="10%">PC 검색량</Table.HeaderColumn>
+          <Table.HeaderColumn columnWidth="10%">Mobile 검색량</Table.HeaderColumn>
+          <Table.HeaderColumn columnWidth="10%">PC 클릭율</Table.HeaderColumn>
+          <Table.HeaderColumn columnWidth="10%">Moblie 클릭율</Table.HeaderColumn>
+          <Table.HeaderColumn columnWidth="10%">경쟁강도</Table.HeaderColumn>
+          <Table.HeaderColumn columnWidth="10%">평균노출 광고수</Table.HeaderColumn>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        {relKeywords.map(keywordItem => {
+          return (
+            <Table.Row key={v4()}>
+              <Table.Column>{keywordItem.relKeyword}</Table.Column>
+              <Table.Column>{keywordItem.monthlyPcQcCnt}</Table.Column>
+              <Table.Column>{keywordItem.monthlyMobileQcCnt}</Table.Column>
+              <Table.Column>{keywordItem.monthlyAvePcClkCnt}</Table.Column>
+              <Table.Column>{keywordItem.monthlyAveMobileClkCnt}</Table.Column>
+              <Table.Column>{keywordItem.compIdx}</Table.Column>
+              <Table.Column>{keywordItem.plAvgDepth}</Table.Column>
+            </Table.Row>
+          );
+        })}
+      </Table.Body>
+    </Table>
   );
 };
 

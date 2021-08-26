@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import Table from 'components/modules/Table';
 import styled from 'styled-components';
 import { v4 } from 'uuid';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteKeyword, fetchKeywords, leaveKeywords } from 'modules/keyword';
+import { deleteKeyword, fetchKeywords } from 'modules/keyword';
 import selectKeyword from 'modules/keyword/selector';
 import Icon from 'components/atoms/Icon';
 import IconTrashRed from 'images/icon-trash-red.svg';
@@ -94,31 +94,31 @@ const Keywords: React.FC = () => {
           </RelKeywordList>
         </FlexBox>
       </KeywordFilterField>
-      <Table
-        columns={[
-          { title: '키워드', key: v4(), width: '10%' },
-          { title: 'PC 검색량', key: v4(), width: '10%' },
-          { title: 'Mobile 검색량', key: v4(), width: '10%' },
-          { title: '총 검색량', key: v4(), width: '10%' },
-          { title: '제품수', key: v4(), width: '10%' },
-          { title: '비율', key: v4(), width: '10%' },
-          { title: '경쟁강도', key: v4(), width: '10%' },
-          { title: '', key: v4(), width: '10%' },
-        ]}
-        data={keywordList.map((keywordItem, keywordItemIdx) => {
-          return {
-            key: v4(),
-            colums: [
-              { key: v4(), element: keywordItem.keyword },
-              { key: v4(), element: keywordItem.searchVolumeWithPC },
-              { key: v4(), element: keywordItem.searchVolumeWithMobile },
-              { key: v4(), element: keywordItem.totalVolume },
-              { key: v4(), element: keywordItem.totalCount },
-              { key: v4(), element: keywordItem.competition },
-              { key: v4(), element: keywordItem.competitiveStrength },
-              {
-                key: v4(),
-                element: (
+      <Table>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderColumn columnWidth="10%">키워드</Table.HeaderColumn>
+            <Table.HeaderColumn columnWidth="10%">PC 검색량</Table.HeaderColumn>
+            <Table.HeaderColumn columnWidth="10%">Mobile 검색량</Table.HeaderColumn>
+            <Table.HeaderColumn columnWidth="10%">총 검색량</Table.HeaderColumn>
+            <Table.HeaderColumn columnWidth="10%">제품수</Table.HeaderColumn>
+            <Table.HeaderColumn columnWidth="10%">비율</Table.HeaderColumn>
+            <Table.HeaderColumn columnWidth="10%">경쟁강도</Table.HeaderColumn>
+            <Table.HeaderColumn columnWidth="10%" />
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {keywordList.map((keywordItem, keywordItemIdx) => {
+            return (
+              <Table.Row key={v4()}>
+                <Table.Column>{keywordItem.keyword}</Table.Column>
+                <Table.Column>{keywordItem.searchVolumeWithPC}</Table.Column>
+                <Table.Column>{keywordItem.searchVolumeWithMobile}</Table.Column>
+                <Table.Column>{keywordItem.totalVolume}</Table.Column>
+                <Table.Column>{keywordItem.totalCount}</Table.Column>
+                <Table.Column>{keywordItem.competition}</Table.Column>
+                <Table.Column>{keywordItem.competitiveStrength}</Table.Column>
+                <Table.Column>
                   <DeleteFlexBox>
                     <Icon
                       onClick={() => handleDeleteClick(keywordItemIdx)}
@@ -127,12 +127,12 @@ const Keywords: React.FC = () => {
                       height="16px"
                     />
                   </DeleteFlexBox>
-                ),
-              },
-            ],
-          };
-        })}
-      />
+                </Table.Column>
+              </Table.Row>
+            );
+          })}
+        </Table.Body>
+      </Table>
     </KeywordContainer>
   );
 };

@@ -90,53 +90,26 @@ const TableHeader: React.FC = ({ children }) => {
   return <StyledTableHeader>{children}</StyledTableHeader>;
 };
 
-type TableColumnType = {
-  title: string;
-  key: string;
-  width: string;
+type TableComponent = {
+  Header: React.FC;
+  HeaderColumn: React.FC<TableHeaderColumnProps>;
+  Row: React.FC<TableRowProps>;
+  Body: React.FC;
+  Column: React.FC;
 };
 
-type TableDataColumnType = {
-  element: React.ReactNode;
-  key: string;
-};
-
-type TableDataType = {
-  key: string;
-  colums: TableDataColumnType[];
-};
-
-type Props = {
-  columns: TableColumnType[];
-  data: TableDataType[];
-  onRowClick?(): void;
-};
-
-const Table: React.FC<Props> = ({ columns, data, onRowClick }) => {
+const Table: React.FC & TableComponent = ({ children }) => {
   return (
     <TableContainer>
-      <StyledTable>
-        <TableHeader>
-          <TableRow>
-            {columns.map(column => (
-              <TableHeaderColumn key={column.key} columnWidth={column.width}>
-                {column.title}
-              </TableHeaderColumn>
-            ))}
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {data.map(row => (
-            <TableRow key={row.key} onClick={onRowClick}>
-              {row.colums.map(column => (
-                <TableColumn key={column.key}>{column.element}</TableColumn>
-              ))}
-            </TableRow>
-          ))}
-        </TableBody>
-      </StyledTable>
+      <StyledTable>{children}</StyledTable>
     </TableContainer>
   );
 };
+
+Table.Header = TableHeader;
+Table.HeaderColumn = TableHeaderColumn;
+Table.Row = TableRow;
+Table.Body = TableBody;
+Table.Column = TableColumn;
 
 export default Table;
