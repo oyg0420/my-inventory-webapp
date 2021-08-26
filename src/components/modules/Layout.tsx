@@ -5,6 +5,8 @@ import NavigationBar from './NavigationBar';
 import Spinner from './Spinner';
 import selectSpinner from 'modules/spinner/selector';
 import SideBar from './SideBar';
+import IconBasketWhite from 'images/icon-basket-white.svg';
+import IconBasket from 'images/icon-basket.svg';
 
 const LayoutContainer = styled.div`
   display: flex;
@@ -75,7 +77,17 @@ const Layout: React.FC<Props> = ({ links, children }) => {
         <NavigationBar links={links} />
       </LayoutHaeder>
       <LayoutContent>
-        <SideBar />
+        <SideBar>
+          <SideBar.Header>헤더</SideBar.Header>
+          <SideBar.Menu>
+            <SideBar.MenuItem pathTo="/keywords" iconUrl={{ default: IconBasket, active: IconBasketWhite }}>
+              쇼핑 키워드
+            </SideBar.MenuItem>
+            <SideBar.MenuItem pathTo="/relKeywords" iconUrl={{ default: IconBasket, active: IconBasketWhite }}>
+              연관 키워드
+            </SideBar.MenuItem>
+          </SideBar.Menu>
+        </SideBar>
         <LayoutBody>{children}</LayoutBody>
       </LayoutContent>
     </LayoutContainer>

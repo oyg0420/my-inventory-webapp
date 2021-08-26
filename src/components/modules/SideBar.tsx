@@ -2,8 +2,6 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import classNames from 'classnames';
-import IconBasketWhite from 'images/icon-basket-white.svg';
-import IconBasket from 'images/icon-basket.svg';
 
 const SideBarContainer = styled.div`
   display: flex;
@@ -24,7 +22,7 @@ const SideBarContainer = styled.div`
   }
 `;
 
-const SideBarMenuItem = styled.li`
+const StyledSideBarMenuItem = styled.li`
   margin-bottom: 5px;
 `;
 
@@ -49,11 +47,11 @@ const SideBarMenuLink = styled.div`
   }
 `;
 
-const SideBarMenuHeader = styled.div`
+const StyledSideBarMenuHeader = styled.div`
   padding: 0 1rem;
 `;
 
-const SideBarMenuList = styled.ul`
+const StyledSideBarMenu = styled.ul`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -77,35 +75,54 @@ const SideBarMenuIcon = styled.svg<{ styles: { url?: string } }>`
   margin-top: 2px;
 `;
 
-const SideBar: React.FC = () => {
+type SideBarMenuItemProps = {
+  pathTo: string;
+  iconUrl: {
+    default: string;
+    active: string;
+  };
+};
+
+const SideBarMenuItem: React.FC<SideBarMenuItemProps> = ({ pathTo, iconUrl, children }) => {
   const history = useHistory();
   const location = useLocation();
   return (
-    <SideBarContainer>
-      <SideBarMenuHeader>닉네임</SideBarMenuHeader>
-      <hr />
-      <SideBarMenuList>
-        <SideBarMenuItem>
-          <SideBarMenuLink
-            className={classNames({ active: location.pathname === '/keywords' })}
-            onClick={() => history.push('/keywords')}
-          >
-            <SideBarMenuIcon styles={{ url: location.pathname === '/keywords' ? IconBasketWhite : IconBasket }} />
-            <span>쇼핑 키워드</span>
-          </SideBarMenuLink>
-        </SideBarMenuItem>
-        <SideBarMenuItem>
-          <SideBarMenuLink
-            className={classNames({ active: location.pathname === '/relKeywords' })}
-            onClick={() => history.push('/relKeywords')}
-          >
-            <SideBarMenuIcon styles={{ url: location.pathname === '/relKeywords' ? IconBasketWhite : IconBasket }} />
-            <span>연관 키워드</span>
-          </SideBarMenuLink>
-        </SideBarMenuItem>
-      </SideBarMenuList>
-    </SideBarContainer>
+    <StyledSideBarMenuItem>
+      <SideBarMenuLink
+        className={classNames({ active: location.pathname === pathTo })}
+        onClick={() => history.push(pathTo)}
+      >
+        <SideBarMenuIcon styles={{ url: location.pathname === pathTo ? iconUrl.active : iconUrl.default }} />
+        <span>{children}</span>
+      </SideBarMenuLink>
+    </StyledSideBarMenuItem>
   );
 };
+
+const SideBarMenu: React.FC = ({ children }) => {
+  return <StyledSideBarMenu>{children}</StyledSideBarMenu>;
+};
+
+const SideBarHeader: React.FC = ({ children }) => {
+  return (
+    <>
+      <StyledSideBarMenuHeader>{children}</StyledSideBarMenuHeader> <hr />
+    </>
+  );
+};
+
+type SideBarComponent = {
+  Header: React.FC;
+  Menu: React.FC;
+  MenuItem: React.FC<SideBarMenuItemProps>;
+};
+
+const SideBar: React.FC & SideBarComponent = ({ children }) => {
+  return <SideBarContainer>{children}</SideBarContainer>;
+};
+
+SideBar.Header = SideBarHeader;
+SideBar.Menu = SideBarMenu;
+SideBar.MenuItem = SideBarMenuItem;
 
 export default SideBar;
