@@ -6,7 +6,7 @@ type IconStyleProps = {
   height?: string;
 };
 
-const Icon = styled.i<IconStyleProps>`
+const Icon = styled.svg<IconStyleProps>`
   width: ${props => props.width};
   height: ${props => props.height};
   background-image: url(${props => props.url});

@@ -7,7 +7,7 @@ export default {
   title: 'modules/Avatar',
 };
 
-const Template: Story = arg => <Avatar type="large" />;
+const Template: Story = arg => <Avatar />;
 
 export const Default = Template.bind({});
 
