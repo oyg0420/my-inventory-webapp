@@ -3,18 +3,40 @@ import { Switch, Route } from 'react-router-dom';
 import Keywords from 'components/pages/Keywords';
 import Layout from 'components/modules/Layout';
 import RelKeywords from 'components/pages/RelKeywords';
+import IconBasketWhite from 'images/icon-basket-white.svg';
+import IconBasket from 'images/icon-basket.svg';
+import NavigationBar from 'components/modules/NavigationBar';
+import SideBar from 'components/modules/SideBar';
 
 const Home: React.FC = () => {
   return (
     <Layout>
-      <Switch>
-        <Route exact path={['/', '/keywords']}>
-          <Keywords />
-        </Route>
-        <Route path="/relKeywords">
-          <RelKeywords />
-        </Route>
-      </Switch>
+      <Layout.Header>
+        <NavigationBar />
+      </Layout.Header>
+      <Layout.Content>
+        <Layout.SideBar>
+          <SideBar.Header>헤더</SideBar.Header>
+          <SideBar.Menu>
+            <SideBar.MenuItem pathTo="/keywords" iconUrl={{ default: IconBasket, active: IconBasketWhite }}>
+              쇼핑 키워드
+            </SideBar.MenuItem>
+            <SideBar.MenuItem pathTo="/relKeywords" iconUrl={{ default: IconBasket, active: IconBasketWhite }}>
+              연관 키워드
+            </SideBar.MenuItem>
+          </SideBar.Menu>
+        </Layout.SideBar>
+        <Layout.Body>
+          <Switch>
+            <Route exact path={['/', '/keywords']}>
+              <Keywords />
+            </Route>
+            <Route path="/relKeywords">
+              <RelKeywords />
+            </Route>
+          </Switch>
+        </Layout.Body>
+      </Layout.Content>
     </Layout>
   );
 };

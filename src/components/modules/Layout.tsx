@@ -1,12 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import NavigationBar from './NavigationBar';
 import Spinner from './Spinner';
 import selectSpinner from 'modules/spinner/selector';
 import SideBar from './SideBar';
-import IconBasketWhite from 'images/icon-basket-white.svg';
-import IconBasket from 'images/icon-basket.svg';
 
 const LayoutContainer = styled.div`
   display: flex;
@@ -44,7 +41,7 @@ export const StyledLayoutSection = styled.section`
   flex-direction: column;
 `;
 
-const LayoutContent = styled.div`
+const StyledLayoutContent = styled.div`
   display: flex;
   flex-direction: row;
   height: 100%;
@@ -62,36 +59,32 @@ export const LayoutHaeder: React.FC = ({ children }) => {
   return <StyledLayoutHeader>{children}</StyledLayoutHeader>;
 };
 
-export type LinkType = { path: string; label: string; key: string };
-
-type Props = {
-  links?: LinkType[];
+export const LayoutContent: React.FC = ({ children }) => {
+  return <StyledLayoutContent>{children}</StyledLayoutContent>;
 };
 
-const Layout: React.FC<Props> = ({ links, children }) => {
+export type LinkType = { path: string; label: string; key: string };
+
+type LayoutComponent = {
+  Header: React.FC;
+  Content: React.FC;
+  SideBar: React.FC;
+  Body: React.FC;
+};
+
+const Layout: React.FC & LayoutComponent = ({ children }) => {
   const show = useSelector(selectSpinner.show);
   return (
     <LayoutContainer>
       {show && <Spinner />}
-      <LayoutHaeder>
-        <NavigationBar links={links} />
-      </LayoutHaeder>
-      <LayoutContent>
-        <SideBar>
-          <SideBar.Header>헤더</SideBar.Header>
-          <SideBar.Menu>
-            <SideBar.MenuItem pathTo="/keywords" iconUrl={{ default: IconBasket, active: IconBasketWhite }}>
-              쇼핑 키워드
-            </SideBar.MenuItem>
-            <SideBar.MenuItem pathTo="/relKeywords" iconUrl={{ default: IconBasket, active: IconBasketWhite }}>
-              연관 키워드
-            </SideBar.MenuItem>
-          </SideBar.Menu>
-        </SideBar>
-        <LayoutBody>{children}</LayoutBody>
-      </LayoutContent>
+      {children}
     </LayoutContainer>
   );
 };
+
+Layout.Header = LayoutHaeder;
+Layout.Content = LayoutContent;
+Layout.SideBar = SideBar;
+Layout.Body = LayoutBody;
 
 export default Layout;
