@@ -4,7 +4,7 @@ import { Story } from '@storybook/react';
 
 export default {
   component: Avatar,
-  title: 'modules/Avatar',
+  title: 'atoms/Avatar',
 };
 
 const Template: Story = arg => <Avatar />;
