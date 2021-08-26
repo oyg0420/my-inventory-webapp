@@ -5,7 +5,7 @@ const BarLogo = styled.svg`
   width: 100px;
 
   background-image: url(${IconLogo});
-  background-size: 100px;
+  background-size: 70px;
   background-repeat: no-repeat;
   background-position: center;
 

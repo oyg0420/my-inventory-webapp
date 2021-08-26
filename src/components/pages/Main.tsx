@@ -2,7 +2,6 @@ import React from 'react';
 import Home from './Home';
 import { Route, Switch } from 'react-router-dom';
 import SignIn from 'components/pages/SignIn';
-import Landing from './Landing';
 import SignUp from './SignUp';
 import { useSelector } from 'react-redux';
 import selectUser from 'modules/session/selector';
