@@ -7,6 +7,7 @@ import IconBasketWhite from 'images/icon-basket-white.svg';
 import IconBasket from 'images/icon-basket.svg';
 import NavigationBar from 'components/modules/NavigationBar';
 import SideBar from 'components/modules/SideBar';
+import { translate } from 'utils/locale';
 
 const Home: React.FC = () => {
   return (
@@ -19,10 +20,10 @@ const Home: React.FC = () => {
           <SideBar.Header></SideBar.Header>
           <SideBar.Menu>
             <SideBar.MenuItem pathTo="/keywords" iconUrl={{ default: IconBasket, active: IconBasketWhite }}>
-              쇼핑 키워드
+              {translate('keyword_shopping')}
             </SideBar.MenuItem>
             <SideBar.MenuItem pathTo="/relKeywords" iconUrl={{ default: IconBasket, active: IconBasketWhite }}>
-              연관 키워드
+              {translate('keyword_relative')}
             </SideBar.MenuItem>
           </SideBar.Menu>
         </Layout.SideBar>

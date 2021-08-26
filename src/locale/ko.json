@@ -1,3 +1,15 @@
 {
-  "ko": "한글"
+  "ko": "한글",
+  "keyword_shopping": "쇼핑 키워드",
+  "keyword_relative": "연관 키워드",
+  "keyword": "키워드",
+  "search_volume_pc": "PC 검색량",
+  "search_volume_mobile": "모바일 검색량",
+  "search_volume_total": "총 검색량",
+  "total_products": "총 제품수",
+  "keyword_ratio": "비율",
+  "keyword_competitive_strength": "경쟁강도",
+  "click_volume_pc": "PC 클릭율",
+  "click_volume_mobile": "모바일 클릭율",
+  "number_avg_ads": "평균노출 광고수"
 }

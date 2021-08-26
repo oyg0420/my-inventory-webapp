@@ -9,6 +9,7 @@ import Icon from 'components/atoms/Icon';
 import IconTrashRed from 'images/icon-trash-red.svg';
 import FlexBox from 'components/atoms/FlexBox';
 import SearchInput from 'components/modules/SearchInput';
+import { translate } from 'utils/locale';
 
 const KeywordContainer = styled.div`
   display: flex;
@@ -97,13 +98,13 @@ const Keywords: React.FC = () => {
       <Table>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderColumn columnWidth="10%">키워드</Table.HeaderColumn>
-            <Table.HeaderColumn columnWidth="10%">PC 검색량</Table.HeaderColumn>
-            <Table.HeaderColumn columnWidth="10%">Mobile 검색량</Table.HeaderColumn>
-            <Table.HeaderColumn columnWidth="10%">총 검색량</Table.HeaderColumn>
-            <Table.HeaderColumn columnWidth="10%">제품수</Table.HeaderColumn>
-            <Table.HeaderColumn columnWidth="10%">비율</Table.HeaderColumn>
-            <Table.HeaderColumn columnWidth="10%">경쟁강도</Table.HeaderColumn>
+            <Table.HeaderColumn columnWidth="10%">{translate('keyword')}</Table.HeaderColumn>
+            <Table.HeaderColumn columnWidth="10%">{translate('search_volume_pc')}</Table.HeaderColumn>
+            <Table.HeaderColumn columnWidth="10%">{translate('search_volume_mobile')}</Table.HeaderColumn>
+            <Table.HeaderColumn columnWidth="10%">{translate('search_volume_total')}</Table.HeaderColumn>
+            <Table.HeaderColumn columnWidth="10%">{translate('total_products')}</Table.HeaderColumn>
+            <Table.HeaderColumn columnWidth="10%">{translate('keyword_ratio')}</Table.HeaderColumn>
+            <Table.HeaderColumn columnWidth="10%">{translate('keyword_competitive_strength')}</Table.HeaderColumn>
             <Table.HeaderColumn columnWidth="10%" />
           </Table.Row>
         </Table.Header>

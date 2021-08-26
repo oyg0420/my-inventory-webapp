@@ -2,6 +2,7 @@ import { KeywordItem } from 'apis/RelKeywordAPI';
 import Table from 'components/modules/Table';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import { translate } from 'utils/locale';
 import { v4 } from 'uuid';
 
 type Props = {
@@ -19,13 +20,13 @@ const RelKeywordTable: React.FC<Props> = ({ keywordList }) => {
     <Table>
       <Table.Header>
         <Table.Row>
-          <Table.HeaderColumn columnWidth="10%">연관 키워드</Table.HeaderColumn>
-          <Table.HeaderColumn columnWidth="10%">PC 검색량</Table.HeaderColumn>
-          <Table.HeaderColumn columnWidth="10%">Mobile 검색량</Table.HeaderColumn>
-          <Table.HeaderColumn columnWidth="10%">PC 클릭율</Table.HeaderColumn>
-          <Table.HeaderColumn columnWidth="10%">Moblie 클릭율</Table.HeaderColumn>
-          <Table.HeaderColumn columnWidth="10%">경쟁강도</Table.HeaderColumn>
-          <Table.HeaderColumn columnWidth="10%">평균노출 광고수</Table.HeaderColumn>
+          <Table.HeaderColumn columnWidth="10%">{translate('keyword_relative')}</Table.HeaderColumn>
+          <Table.HeaderColumn columnWidth="10%">{translate('search_volume_pc')}</Table.HeaderColumn>
+          <Table.HeaderColumn columnWidth="10%">{translate('search_volume_mobile')}</Table.HeaderColumn>
+          <Table.HeaderColumn columnWidth="10%">{translate('click_volume_pc')}</Table.HeaderColumn>
+          <Table.HeaderColumn columnWidth="10%">{translate('click_volume_mobile')}</Table.HeaderColumn>
+          <Table.HeaderColumn columnWidth="10%">{translate('keyword_competitive_strength')}</Table.HeaderColumn>
+          <Table.HeaderColumn columnWidth="10%">{translate('number_avg_ads')}</Table.HeaderColumn>
         </Table.Row>
       </Table.Header>
       <Table.Body>
