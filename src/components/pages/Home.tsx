@@ -16,7 +16,7 @@ const Home: React.FC = () => {
       </Layout.Header>
       <Layout.Content>
         <Layout.SideBar>
-          <SideBar.Header>헤더</SideBar.Header>
+          <SideBar.Header></SideBar.Header>
           <SideBar.Menu>
             <SideBar.MenuItem pathTo="/keywords" iconUrl={{ default: IconBasket, active: IconBasketWhite }}>
               쇼핑 키워드

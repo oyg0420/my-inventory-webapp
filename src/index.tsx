@@ -9,8 +9,10 @@ import Main from 'components/pages/Main';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { configureAxios } from 'apis';
 import Spinner from 'components/modules/Spinner';
+import { initLocale } from 'config/locale';
 
 configureAxios();
+initLocale();
 
 ReactDOM.render(
   <Provider store={configStore.store}>
