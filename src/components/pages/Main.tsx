@@ -18,10 +18,7 @@ const Main: React.FC = () => {
           </Route>
         ) : (
           <>
-            <Route exact path="/">
-              <Landing />
-            </Route>
-            <Route exact path="/sign_in">
+            <Route exact path={['/', '/sign_in']}>
               <SignIn />
             </Route>
             <Route exact path="/sign_up">
