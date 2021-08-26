@@ -8,8 +8,14 @@ import IconBasket from 'images/icon-basket.svg';
 import NavigationBar from 'components/modules/NavigationBar';
 import SideBar from 'components/modules/SideBar';
 import { translate } from 'utils/locale';
+import Avatar from 'components/atoms/Avatar';
+import { useSelector } from 'react-redux';
+import selectUser from 'modules/session/selector';
+import FlexBox from 'components/atoms/FlexBox';
+import Span from 'components/atoms/Span';
 
 const Home: React.FC = () => {
+  const user = useSelector(selectUser.user);
   return (
     <Layout>
       <Layout.Header>
@@ -17,7 +23,12 @@ const Home: React.FC = () => {
       </Layout.Header>
       <Layout.Content>
         <Layout.SideBar>
-          <SideBar.Header></SideBar.Header>
+          <SideBar.Header>
+            <FlexBox styles={{ alignItems: 'center' }}>
+              <Avatar url={user.avatar} />
+              <Span styles={{ margin: '0 0 0 10px', fontSize: '15px' }}>{user.name}</Span>
+            </FlexBox>
+          </SideBar.Header>
           <SideBar.Menu>
             <SideBar.MenuItem pathTo="/keywords" iconUrl={{ default: IconBasket, active: IconBasketWhite }}>
               {translate('keyword_shopping')}

@@ -9,6 +9,7 @@ const AvatarContainer = styled(Icon)<{ type?: 'large' | 'small' }>`
   background-size: ${props => props.theme.avatar[props.type || 'default'].backgroundSize};
   width: ${props => props.theme.avatar[props.type || 'default'].width};
   height: ${props => props.theme.avatar[props.type || 'default'].height};
+  border-radius: 100%;
 `;
 
 type Props = {
