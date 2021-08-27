@@ -10,10 +10,6 @@ const LayoutContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  left: 0;
 `;
 
 export const StyledLayoutHeader = styled.header`
@@ -47,6 +43,7 @@ const StyledLayoutContent = styled.div`
   display: flex;
   flex-direction: row;
   height: 100%;
+  overflow: scroll;
 `;
 
 export const LayoutBody: React.FC = ({ children }) => {

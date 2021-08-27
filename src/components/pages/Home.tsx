@@ -46,9 +46,6 @@ const Home: React.FC = () => {
             <SideBar.MenuItem pathTo="/keywords" iconUrl={{ default: IconBasket, active: IconBasketWhite }}>
               {translate('keyword_shopping')}
             </SideBar.MenuItem>
-            <SideBar.MenuItem pathTo="/relKeywords" iconUrl={{ default: IconBasket, active: IconBasketWhite }}>
-              {translate('keyword_relative')}
-            </SideBar.MenuItem>
           </SideBar.Menu>
         </Layout.SideBar>
         <Layout.Body>

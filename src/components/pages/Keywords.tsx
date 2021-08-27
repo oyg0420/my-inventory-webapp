@@ -10,6 +10,7 @@ import SearchInput from 'components/modules/SearchInput';
 import { translate } from 'utils/locale';
 import Card from 'components/modules/Card';
 import Img from 'components/atoms/Img';
+import { H1 } from 'components/atoms/Heading';
 
 const COMPETITIVE_STRENGTH: { [x: string]: string } = { 높음: 'high', 낮음: 'low', 중간: 'middle' };
 
@@ -20,13 +21,6 @@ const KeywordContainer = styled.div`
   padding: 0 30px;
 `;
 
-const StyledCardRow = styled(Card.Row)`
-  padding: 15px;
-  box-shadow: 0 5px 30px 0 #dee8ef;
-  border-radius: 10px;
-  height: 100%;
-`;
-
 const SectionContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,15 +28,15 @@ const SectionContainer = styled.div`
   height: 100%;
   overflow: scroll;
 
-  ${StyledCardRow}:first-child {
-    margin-bottom: 10px;
+  ${Card}:first-child {
+    margin-bottom: 25px;
   }
 
-  ${StyledCardRow} + ${StyledCardRow} {
-    margin-bottom: 10px;
+  ${Card} + ${Card} {
+    margin-bottom: 25px;
   }
 
-  ${StyledCardRow}:last-child {
+  ${Card}:last-child {
     margin-bottom: 0px;
   }
 `;
@@ -79,6 +73,20 @@ const StyledCardColumn = styled(Card.Column)`
   }
 `;
 
+const ProductSection = styled(FlexBox)`
+  padding: 20px;
+  flex-direction: column;
+`;
+
+const ProductContent = styled(FlexBox)``;
+
+const ProductDetail = styled(FlexBox)`
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 0 10px;
+`;
+
 const Keywords: React.FC = () => {
   const keywordList = useSelector(selectKeyword.list);
   const relativeKeywords = useSelector(selectKeyword.relativeKeywords);
@@ -94,73 +102,70 @@ const Keywords: React.FC = () => {
 
   return (
     <KeywordContainer>
-      <SearchInput originKeyword={keyword} onEnterKeyPress={handleKeypress} />
+      <FlexBox styles={{ padding: '0 20px 20px 20px', flexDirection: 'column' }}>
+        <SearchInput originKeyword={keyword} onEnterKeyPress={handleKeypress} />
+      </FlexBox>
       <SectionContainer>
-        <FlexBox styles={{ flexDirection: 'column', margin: '10px 0 20px 0', flex: 1 }}>
-          <FlexBox
-            styles={{
-              height: '400px',
-              margin: '10px 0',
-            }}
-          >
-            <Card styles={{ width: '100%' }}>
-              <Card.SubTitle>{keywordList[0].category}</Card.SubTitle>
-              <Card.Content>
-                <FlexBox>
-                  <Img
-                    src={keywordList[0]?.image}
-                    alt="product"
-                    width={250}
-                    styles={{ border: '1px solid #d2dae0', borderRadius: '5px', margin: '0 20px 0 0' }}
-                  />
-                </FlexBox>
-                <FlexBox styles={{ flexDirection: 'column', justifyContent: 'center', width: '100%' }}>
-                  <StyledCardRow>
-                    <StyledCardColumn label={translate('total_products')}>
-                      <b>{keywordList[0]?.totalVolume}</b>
-                      <span className="count">{translate('count_product')}</span>
-                    </StyledCardColumn>
-                    <StyledCardColumn label={translate('search_volume_total')}>
-                      <b>{keywordList[0]?.totalCount}</b>
-                      <span className="count">{translate('count_search')}</span>
-                    </StyledCardColumn>
-                    <StyledCardColumn label={translate('keyword_ratio')}>
-                      <b>{keywordList[0]?.competition}</b>
-                    </StyledCardColumn>
-                    <StyledCardColumn label={translate('keyword_competitive_strength')}>
-                      <b className={COMPETITIVE_STRENGTH[keywordList[0]?.competitiveStrength]}>
-                        {keywordList[0]?.competitiveStrength}
-                      </b>
-                    </StyledCardColumn>
-                  </StyledCardRow>
-                  <StyledCardRow>
-                    <StyledCardColumn label={translate('avg_price')}>
-                      <b>{keywordList[0]?.avgPrice}</b>
-                      <span className="count">{translate('korean_currency')}</span>
-                    </StyledCardColumn>
-                    <StyledCardColumn label={translate('low_price')}>
-                      <b>{keywordList[0]?.lowPrice}</b>
-                      <span className="count">{translate('korean_currency')}</span>
-                    </StyledCardColumn>
-                    <StyledCardColumn label={translate('high_price')}>
-                      <b>{keywordList[0]?.highPrice}</b>
-                      <span className="count">{translate('korean_currency')}</span>
-                    </StyledCardColumn>
-                  </StyledCardRow>
-                  <StyledCardRow>
-                    <StyledCardColumn label={translate('sale_volume')}>{translate('sale_volume')}</StyledCardColumn>
-                    <StyledCardColumn label={translate('sale_price')}>{translate('sale_price')}</StyledCardColumn>
-                  </StyledCardRow>
-                </FlexBox>
-              </Card.Content>
-            </Card>
-            <Card styles={{ width: '20%' }}>
+        <ProductSection>
+          <H1>{keywordList[0].category}</H1>
+          <ProductContent>
+            <Img
+              src={keywordList[0]?.image}
+              alt="product"
+              width={250}
+              styles={{ border: '1px solid #d2dae0', borderRadius: '5px', margin: '0 20px 0 0' }}
+            />
+            <ProductDetail>
+              <Card>
+                <Card.Row>
+                  <StyledCardColumn label={translate('total_products')}>
+                    <b>{keywordList[0]?.totalVolume}</b>
+                    <span className="count">{translate('count_product')}</span>
+                  </StyledCardColumn>
+                  <StyledCardColumn label={translate('search_volume_total')}>
+                    <b>{keywordList[0]?.totalCount}</b>
+                    <span className="count">{translate('count_search')}</span>
+                  </StyledCardColumn>
+                  <StyledCardColumn label={translate('keyword_ratio')}>
+                    <b>{keywordList[0]?.competition}</b>
+                  </StyledCardColumn>
+                  <StyledCardColumn label={translate('keyword_competitive_strength')}>
+                    <b className={COMPETITIVE_STRENGTH[keywordList[0]?.competitiveStrength]}>
+                      {keywordList[0]?.competitiveStrength}
+                    </b>
+                  </StyledCardColumn>
+                </Card.Row>
+              </Card>
+              <Card>
+                <Card.Row>
+                  <StyledCardColumn label={translate('avg_price')}>
+                    <b>{keywordList[0]?.avgPrice}</b>
+                    <span className="count">{translate('korean_currency')}</span>
+                  </StyledCardColumn>
+                  <StyledCardColumn label={translate('low_price')}>
+                    <b>{keywordList[0]?.lowPrice}</b>
+                    <span className="count">{translate('korean_currency')}</span>
+                  </StyledCardColumn>
+                  <StyledCardColumn label={translate('high_price')}>
+                    <b>{keywordList[0]?.highPrice}</b>
+                    <span className="count">{translate('korean_currency')}</span>
+                  </StyledCardColumn>
+                </Card.Row>
+              </Card>
+              <Card>
+                <Card.Row>
+                  <StyledCardColumn label={translate('sale_volume')}>{translate('sale_volume')}</StyledCardColumn>
+                  <StyledCardColumn label={translate('sale_price')}>{translate('sale_price')}</StyledCardColumn>
+                </Card.Row>
+              </Card>
+            </ProductDetail>
+          </ProductContent>
+        </ProductSection>
+        <ProductSection>
+          <H1>{translate('keyword_shopping')}</H1>
+          <ProductContent styles={{ height: '400px' }}>
+            <Card styles={{ width: '200px' }}>
               <Table>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderColumn columnWidth="100%">{translate('keyword_shopping')}</Table.HeaderColumn>
-                  </Table.Row>
-                </Table.Header>
                 <Table.Body>
                   {(relativeKeywords || []).map(relativeKeyword => {
                     return (
@@ -172,8 +177,8 @@ const Keywords: React.FC = () => {
                 </Table.Body>
               </Table>
             </Card>
-          </FlexBox>
-        </FlexBox>
+          </ProductContent>
+        </ProductSection>
       </SectionContainer>
     </KeywordContainer>
   );
