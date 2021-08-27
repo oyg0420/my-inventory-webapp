@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { GetKeywordsResponse, KeywordItem } from 'apis/KeywordAPI';
+import { GetKeywordsResponse, KeywordItem, PriceOption } from 'apis/KeywordAPI';
 
 interface KeywordState {
   keywordList: KeywordItem[];
@@ -23,8 +23,8 @@ const keywordsSlice = createSlice({
     fetchKeywords(state, action: PayloadAction<FetchKeywordPayload>) {
       state.keyword = action.payload.keyword;
     },
-    fetchKeywordsSuccessed(state, action: PayloadAction<GetKeywordsResponse>) {
-      state.keywordList = [action.payload.result, ...state.keywordList];
+    fetchKeywordsSuccessed(state, action: PayloadAction<GetKeywordsResponse & { priceOption: PriceOption }>) {
+      state.keywordList = [{ ...action.payload.result, ...action.payload.priceOption }, ...state.keywordList];
     },
     fetchKeywordsFailed(state) {},
     deleteKeyword(state, action: PayloadAction<DeleteKeywordPayload>) {

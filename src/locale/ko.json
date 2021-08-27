@@ -8,7 +8,7 @@
   "search_volume_total": "총 검색량",
   "total_products": "총 제품수",
   "keyword_ratio": "비율",
-  "keyword_competitive_strength": "경쟁강도",
+  "keyword_competitive_strength": "광고 경쟁강도",
   "click_volume_pc": "PC 클릭율",
   "click_volume_mobile": "모바일 클릭율",
   "number_avg_ads": "평균노출 광고수",
@@ -17,5 +17,8 @@
   "low_price": "최저가",
   "high_price": "최고가",
   "sale_volume": "판매량",
-  "sale_price": "매출"
+  "sale_price": "매출",
+  "count_product": "개",
+  "count_search": "번",
+  "korean_currency": "원"
 }

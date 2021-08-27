@@ -17,6 +17,12 @@ export type KeywordItem = {
   price: string[];
   etc: string[];
   image: string;
+} & PriceOption;
+
+export type PriceOption = {
+  highPrice: string;
+  lowPrice: string;
+  avgPrice: string;
 };
 
 export type GetKeywordsResponse = {

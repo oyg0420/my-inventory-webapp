@@ -10,8 +10,15 @@ const CardContainer = styled.div<{ styles?: CardProps['styles'] }>`
   padding: 10px;
   border-radius: ${props => props.styles?.borderRadius || '5px'};
   width: ${props => props.styles?.width || '100%'};
+  height: ${props => props.styles?.height || '100%'};
   ${props => props.styles?.margin && `margin: ${props.styles.margin};`};
   ${props => props.styles?.boxShadow && `box-shadow: ${props.styles.boxShadow};`};
+`;
+
+const StyledCardColumnContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 const StyledCardTitle = styled.h2`
@@ -47,7 +54,7 @@ const CarContentRow: React.FC<CardContentRowProps> = ({ className, children }) =
   return (
     <FlexBox
       className={className}
-      styles={{ margin: '10px 0', alignItems: 'center', justifyContent: 'center', boxShadow: '0 5px 30px 0 #dee8ef' }}
+      styles={{ alignItems: 'center', justifyContent: 'center', boxShadow: '0 5px 30px 0 #dee8ef' }}
     >
       {children}
     </FlexBox>
@@ -66,7 +73,7 @@ const CardColumn: React.FC<CardColumnProps> = ({ className, label, children }) =
       styles={{ margin: '0 10px', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
     >
       {label && <Span styles={{ fontSize: '14px' }}>{label}</Span>}
-      <Span styles={{ fontWeight: 'bold' }}>{children}</Span>
+      <StyledCardColumnContent>{children}</StyledCardColumnContent>
     </FlexBox>
   );
 };
@@ -89,6 +96,7 @@ type CardProps = {
     margin?: string;
     boxShadow?: string;
     borderRadius?: string;
+    height?: string;
   };
 };
 

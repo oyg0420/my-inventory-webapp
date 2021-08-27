@@ -3,7 +3,11 @@ import styled from 'styled-components';
 
 const StyledTableHeader = styled.thead``;
 
-const StyledTableBody = styled.tbody``;
+const StyledTableBody = styled.tbody<{ styles?: TableBodyProps['styles'] }>`
+  ${props => props.styles?.border && `border: ${props.styles.border};`};
+  ${props => props.styles?.borderRadius && `bordr-radius: ${props.styles.borderRadius};`};
+  ${props => props.styles?.backgroundColor && `background-color: ${props.styles.backgroundColor};`}
+`;
 
 const StyledTableHeaderColumn = styled.th<{ columnWidth: string }>`
   height: 30px;
@@ -78,8 +82,16 @@ const TableColumn: React.FC<TableColumnProps> = ({ className, children }) => {
   return <StyledTableColumn className={className}>{children}</StyledTableColumn>;
 };
 
-const TableBody: React.FC = ({ children }) => {
-  return <StyledTableBody>{children}</StyledTableBody>;
+type TableBodyProps = {
+  styles?: {
+    border?: string;
+    backgroundColor?: string;
+    borderRadius?: string;
+  };
+};
+
+const TableBody: React.FC<TableBodyProps> = ({ styles, children }) => {
+  return <StyledTableBody styles={styles}>{children}</StyledTableBody>;
 };
 
 type TableHeaderColumnProps = { columnWidth: string };
@@ -96,7 +108,7 @@ type TableComponent = {
   Header: React.FC;
   HeaderColumn: React.FC<TableHeaderColumnProps>;
   Row: React.FC<TableRowProps>;
-  Body: React.FC;
+  Body: React.FC<TableBodyProps>;
   Column: React.FC<TableColumnProps>;
 };
 
