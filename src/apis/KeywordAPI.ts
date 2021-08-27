@@ -9,10 +9,14 @@ export type KeywordItem = {
   relativeKeywords: string[];
   searchVolumeWithPC: number;
   searchVolumeWithMobile: number;
-  totalVolume: number;
+  totalVolume: number | null;
   totalCount: number;
   competition: number;
   competitiveStrength: string;
+  category: string;
+  price: string[];
+  etc: string[];
+  image: string;
 };
 
 export type GetKeywordsResponse = {
@@ -21,10 +25,14 @@ export type GetKeywordsResponse = {
     relativeKeywords: string[];
     searchVolumeWithPC: number;
     searchVolumeWithMobile: number;
-    totalVolume: number;
+    totalVolume: number | null;
     totalCount: number;
     competition: number;
     competitiveStrength: string;
+    category: string;
+    price: string[];
+    etc: string[];
+    image: string;
   };
 };
 

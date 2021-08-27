@@ -12,5 +12,10 @@
   "click_volume_pc": "PC 클릭율",
   "click_volume_mobile": "모바일 클릭율",
   "number_avg_ads": "평균노출 광고수",
-  "sign_out": "로그아웃"
+  "sign_out": "로그아웃",
+  "avg_price": "평균가",
+  "low_price": "최저가",
+  "high_price": "최고가",
+  "sale_volume": "판매량",
+  "sale_price": "매출"
 }

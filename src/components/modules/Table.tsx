@@ -8,12 +8,10 @@ const StyledTableBody = styled.tbody``;
 const StyledTableHeaderColumn = styled.th<{ columnWidth: string }>`
   height: 30px;
   width: ${props => props.columnWidth};
-  border-top: 1px solid #e8e8e8;
-  border-bottom: 1px solid #e8e8e8;
   box-sizing: border-box;
-  color: #7d7d7d;
-  background-color: #fafafa;
-  font-size: 12px;
+  color: #333;
+  background-color: #fff;
+  font-size: 14px;
   vertical-align: middle;
   text-align: initial;
 `;
@@ -53,9 +51,9 @@ const StyledTable = styled.table`
   width: 100%;
 `;
 
-const TableContainer = styled.div`
+const TableContainer = styled.div<{ styles?: TableProps['styles'] }>`
   height: 100%;
-  width: 100%;
+  width: ${props => props.styles?.width || '100%'};
   overflow: auto;
   transition: opacity 300ms ease-in-out;
   ${StyledTableHeaderColumn} {
@@ -72,8 +70,12 @@ const TableRow: React.FC<TableRowProps> = ({ onClick, children }) => {
   return <StyledTableRow onClick={onClick}>{children}</StyledTableRow>;
 };
 
-const TableColumn: React.FC = ({ children }) => {
-  return <StyledTableColumn>{children}</StyledTableColumn>;
+type TableColumnProps = {
+  className?: string;
+};
+
+const TableColumn: React.FC<TableColumnProps> = ({ className, children }) => {
+  return <StyledTableColumn className={className}>{children}</StyledTableColumn>;
 };
 
 const TableBody: React.FC = ({ children }) => {
@@ -95,12 +97,18 @@ type TableComponent = {
   HeaderColumn: React.FC<TableHeaderColumnProps>;
   Row: React.FC<TableRowProps>;
   Body: React.FC;
-  Column: React.FC;
+  Column: React.FC<TableColumnProps>;
 };
 
-const Table: React.FC & TableComponent = ({ children }) => {
+type TableProps = {
+  styles?: {
+    width?: string;
+  };
+};
+
+const Table: React.FC<TableProps> & TableComponent = ({ styles, children }) => {
   return (
-    <TableContainer>
+    <TableContainer styles={styles}>
       <StyledTable>{children}</StyledTable>
     </TableContainer>
   );
@@ -110,6 +118,6 @@ Table.Header = TableHeader;
 Table.HeaderColumn = TableHeaderColumn;
 Table.Row = TableRow;
 Table.Body = TableBody;
-Table.Column = TableColumn;
+Table.Column = styled(TableColumn)``;
 
 export default Table;

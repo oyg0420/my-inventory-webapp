@@ -10,6 +10,8 @@ import IconTrashRed from 'images/icon-trash-red.svg';
 import FlexBox from 'components/atoms/FlexBox';
 import SearchInput from 'components/modules/SearchInput';
 import { translate } from 'utils/locale';
+import Card from 'components/modules/Card';
+import Img from 'components/atoms/Img';
 
 const KeywordContainer = styled.div`
   display: flex;
@@ -30,29 +32,21 @@ const DeleteFlexBox = styled(FlexBox)`
   }
 `;
 
-const RelKeywordItem = styled.li`
-  max-width: 120px;
-  padding: 0 5px;
-  border-radius: 100px;
-  background-color: rgb(234, 240, 245);
-  vertical-align: middle;
-  height: 22px;
-  line-height: 22px;
-  margin: 0 5px 5px 0;
-  font-size: 12px;
-  cursor: pointer;
+const StyledTableColunm = styled(Table.Column)`
+  & {
+    font-size: 14px;
+    border-radius: 5px;
+  }
 `;
 
-const RelKeywordList = styled.ul`
-  position: relative;
-  flex: 1 1 0%;
-  padding: 5px 6px 1px 10px;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-  box-sizing: border-box;
-  cursor: text;
-  flex-wrap: wrap;
-  display: flex;
+const StyledCardColumn = styled(Card.Column)`
+  padding: 0 30px;
+`;
+
+const StyledCardRow = styled(Card.Row)`
+  padding: 15px;
+  box-shadow: 0 5px 30px 0 #dee8ef;
+  border-radius: 10px;
 `;
 
 const Keywords: React.FC = () => {
@@ -88,11 +82,69 @@ const Keywords: React.FC = () => {
       <KeywordFilterField>
         <FlexBox styles={{ flexDirection: 'column', margin: '10px 0 0 0', flex: 1 }}>
           <SearchInput originKeyword={keyword} onEnterKeyPress={handleKeypress} />
-          <RelKeywordList>
-            {(relativeKeywords || []).map(relativeKeyword => (
-              <RelKeywordItem onClick={() => handleRelKeywordClick(relativeKeyword)}>{relativeKeyword}</RelKeywordItem>
-            ))}
-          </RelKeywordList>
+          <FlexBox
+            styles={{
+              height: '400px',
+              margin: '10px 0',
+            }}
+          >
+            <Card styles={{ width: '100%', margin: '0 50px 0 0' }}>
+              <Card.SubTitle>{keywordList[0].category}</Card.SubTitle>
+              <Card.Content>
+                <FlexBox>
+                  <Img
+                    src={keywordList[0]?.image}
+                    alt="product"
+                    width={200}
+                    styles={{ border: '1px solid #d2dae0', borderRadius: '5px' }}
+                  />
+                </FlexBox>
+                <FlexBox styles={{ flexDirection: 'column', margin: '0 20px', justifyContent: 'center' }}>
+                  <StyledCardRow>
+                    <StyledCardColumn label={translate('total_products')}>
+                      {keywordList[0]?.totalVolume}
+                    </StyledCardColumn>
+                    <StyledCardColumn label={translate('search_volume_total')}>
+                      {keywordList[0]?.totalCount}
+                    </StyledCardColumn>
+                    <StyledCardColumn label={translate('keyword_ratio')}>
+                      {keywordList[0]?.competition}
+                    </StyledCardColumn>
+                    <StyledCardColumn label={translate('keyword_competitive_strength')}>
+                      {keywordList[0]?.competitiveStrength}
+                    </StyledCardColumn>
+                  </StyledCardRow>
+                  <StyledCardRow>
+                    <StyledCardColumn label={translate('avg_price')}>{translate('avg_price')}</StyledCardColumn>
+                    <StyledCardColumn label={translate('low_price')}>{translate('low_price')}</StyledCardColumn>
+                    <StyledCardColumn label={translate('high_price')}>{translate('high_price')}</StyledCardColumn>
+                  </StyledCardRow>
+                  <StyledCardRow>
+                    <StyledCardColumn label={translate('sale_volume')}>{translate('sale_volume')}</StyledCardColumn>
+                    <StyledCardColumn label={translate('sale_price')}>{translate('sale_price')}</StyledCardColumn>
+                  </StyledCardRow>
+                </FlexBox>
+              </Card.Content>
+            </Card>
+            <Card styles={{ width: '200px', boxShadow: '0 5px 30px 0 #dee8ef', borderRadius: '10px' }}>
+              <Table>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderColumn columnWidth="100%">{translate('keyword_shopping')}</Table.HeaderColumn>
+                  </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                  {(relativeKeywords || []).map(relativeKeyword => {
+                    return (
+                      <Table.Row key={v4()}>
+                        <StyledTableColunm>{relativeKeyword}</StyledTableColunm>
+                      </Table.Row>
+                    );
+                  })}
+                </Table.Body>
+              </Table>
+            </Card>
+          </FlexBox>
         </FlexBox>
       </KeywordFilterField>
       <Table>
