@@ -28,7 +28,7 @@ const FlexBox = styled.div<Props>`
   ${props => props.styles?.padding && `padding: ${props.styles.padding};`}
   ${props => props.styles?.border && `border: ${props.styles.border};`}
   ${props => props.styles?.borderRadius && `border-radius: ${props.styles.borderRadius};`}
-  ${props => props.styles?.boxShadow && `boxshadow: ${props.styles.boxShadow};`}
+  ${props => props.styles?.boxShadow && `box-shadow: ${props.styles.boxShadow};`}
 `;
 
 export default FlexBox;

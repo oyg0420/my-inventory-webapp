@@ -13,6 +13,7 @@ import {
 import { ActionType } from 'typesafe-actions';
 import { postSignIn, PostSignInResponse, postSignUp } from 'apis/SessionAPI';
 import { setAuthenticationHeader } from 'apis';
+import { initKeywords } from 'modules/keyword';
 
 function* requestSignIn(payload: SignInPayload) {
   try {
@@ -68,11 +69,16 @@ function* SignUpFlow() {
   }
 }
 
+function* handleSignOut() {
+  yield put(initKeywords());
+}
+
 export function* sessionSaga() {
   yield takeLeading(signUpFailed, handleSignUpFailed);
   yield takeLeading(signUpSuccessed, handleSignUpSuccessed);
   yield takeLeading(signInFailed, handleSignInFailed);
   yield takeLeading(signInSuccessed, handleSignInSuccessed);
+  yield takeLeading(signOut, handleSignOut);
   yield fork(LoginFlow);
   yield fork(SignUpFlow);
 }

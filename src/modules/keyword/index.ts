@@ -30,12 +30,12 @@ const keywordsSlice = createSlice({
     deleteKeyword(state, action: PayloadAction<DeleteKeywordPayload>) {
       state.keywordList.splice(action.payload.selectedIdx, 1);
     },
-    leaveKeywords: state => initialState,
+    initKeywords: state => initialState,
   },
 });
 
 const { actions, reducer: keywordsReducer } = keywordsSlice;
 
-export const { fetchKeywords, fetchKeywordsFailed, fetchKeywordsSuccessed, deleteKeyword, leaveKeywords } = actions;
+export const { fetchKeywords, fetchKeywordsFailed, fetchKeywordsSuccessed, deleteKeyword, initKeywords } = actions;
 
 export default keywordsReducer;

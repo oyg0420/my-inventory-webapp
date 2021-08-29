@@ -20,5 +20,7 @@
   "sale_price": "매출",
   "count_product": "개",
   "count_search": "번",
-  "korean_currency": "원"
+  "korean_currency": "원",
+  "category": "카테고리",
+  "search_volume": "검색량"
 }

@@ -52,10 +52,7 @@ type CardContentRowProps = {
 
 const CarContentRow: React.FC<CardContentRowProps> = ({ className, children }) => {
   return (
-    <FlexBox
-      className={className}
-      styles={{ alignItems: 'center', justifyContent: 'center', boxShadow: '0 5px 30px 0 #dee8ef' }}
-    >
+    <FlexBox className={className} styles={{ alignItems: 'center', justifyContent: 'center' }}>
       {children}
     </FlexBox>
   );
